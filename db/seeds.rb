@@ -11,7 +11,7 @@ puts "Creating users Referrer"
     last_name: Faker::Name.last_name,
     email: Faker::Internet.email,
     password: "123456",
-    role: 1,
+    role: true,
     brand: Faker::Commerce.brand,
     description: Faker::Lorem.sentence(word_count: 4)
   )
@@ -25,7 +25,7 @@ puts "Creating Fashion Lovers"
     last_name: Faker::Name.last_name,
     email: Faker::Internet.email,
     password: "123456",
-    role: 0
+    role: false
   )
   user.save!
 end
@@ -51,7 +51,7 @@ end
 puts "Creating orders"
 5.times do
   Order.create(
-    status: [1, 0].sample,
+    status: [true, false].sample,
     quantity: rand(1..5),
     payment: payment.sample,
     delivery: delivery.sample,
