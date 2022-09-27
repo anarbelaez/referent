@@ -1,8 +1,11 @@
 class CreateOrders < ActiveRecord::Migration[7.0]
   def change
     create_table :orders do |t|
-      t.boolean :status
-      t.integer :quantity
+      t.boolean :status, null: false
+      t.integer :quantity, null: false
+      t.string :payment, null: false
+      t.string :delivery, null: false
+
       t.references :user, null: false, foreign_key: true
       t.references :product, null: false, foreign_key: true
 
