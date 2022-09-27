@@ -4,20 +4,30 @@ payment = ["Cash", "Debit Card", "Credit Card"]
 delivery = ["Home delivery", "Shipping to a delivery point"]
 sizes = ["S", "M", "L"]
 
-puts "Creating users"
+puts "Creating users Referrer"
 10.times do
-  role = [true, false].sample # True --> Referrer, False: Fashion Lover
-  User.create(
-    first_name: ,
-    last_name: ,
+  user = User.new(
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
     email: Faker::Internet.email,
-    password: "12345",
-    role: role,
-    if role == true
-      brand: Faker::Commerce.brand
-      description: Faker::Lorem.sentence(word_count: 4)
-    end
+    password: "123456",
+    role: 1,
+    brand: Faker::Commerce.brand,
+    description: Faker::Lorem.sentence(word_count: 4)
   )
+  user.save!
+end
+
+puts "Creating Fashion Lovers"
+10.times do
+  user = User.new(
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    email: Faker::Internet.email,
+    password: "123456",
+    role: 0
+  )
+  user.save!
 end
 
 referrers = User.where(role: true)
@@ -28,7 +38,7 @@ puts "Creating products"
   Product.create(
     name: Faker::Commerce.product_name,
     description: Faker::Lorem.sentence(word_count: 6),
-    price: Faker::Commerce.price,
+    price: rand(20..30),
     stock: rand(1..20),
     user_id: referrers.sample.id,
     size: sizes.sample,
@@ -41,7 +51,7 @@ end
 puts "Creating orders"
 5.times do
   Order.create(
-    status: ,
+    status: [1, 0].sample,
     quantity: rand(1..5),
     payment: payment.sample,
     delivery: delivery.sample,
