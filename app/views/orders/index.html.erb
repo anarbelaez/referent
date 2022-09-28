@@ -1,7 +1,17 @@
+<div class="row">
+<h1>¡All my orders!</h1>
 <% @orders.each do |order| %>
 <div class="row">
-<h1> <%=  order.product.name %></h1>
- <p> <%= order.status %> | <%= order.quantity %> | <%= order.payment %> | <%= order.delivery %> | <%= order.user_id %> | <%= order.product_id %></p>
+<h1> <%= link_to order.product.name, order_path(order),  class: "link" %> </h1>
+ <p>  | <%= order.quantity %> | Created at <%= order.created_at.strftime('%A, %d de %B de %Y') %>| last update <%= order.updated_at.strftime('%A, %d de %B de %Y') %> | <%= order.payment %> | <%= order.delivery %> | <%= order.user_id %> | <%= order.product_id %></p>
 <h3> <%= order.user.first_name %>  <%= order.user.last_name %></h3>
 </div>
+<% if order.status == true %>
+ <%= "ORDER COMPLETED" %>
+<% else %>
+<%= "ORDER OPEN" %>
 <% end %>
+
+
+<% end %>
+</div>

@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   before_action :set_product, only: %i[new create]
 
   def index
-    @orders = Order.all
+    @orders = current_user.orders.all
   end
 
   def new
@@ -38,7 +38,7 @@ class OrdersController < ApplicationController
   def destroy
     @order = Order.find(params[:id])
     @order.destroy
-    redirect_to product_orders_path(@order), status: :see_other
+    redirect_to orders_path(@order), status: :see_other
   end
 
   private

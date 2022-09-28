@@ -1,4 +1,17 @@
-<%= @order%>
 
- <h1> <%= @order.status %> <%= @order.quantity %> <%= @order.payment %> <%= @order.delivery %> <%= @order.user_id %> <%= @order.product_id %></h1>
+ <ul> <%= @order.status %>
+  <%= @order.quantity %>
+   <%= @order.payment %>
+   <%= @order.delivery %>
+   <%= @order.user_id %>
+    <%= @order.product_id %>
+    </ul>
  <%= link_to "Delete Order", order_path(@order), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:'btn-flat'%>
+
+
+<% if @order.status == true %>
+ <%= "ORDER COMPLETED" %>
+<% else %>
+<%= "ORDER OPEN" %>
+<% end %>
+
