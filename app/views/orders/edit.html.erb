@@ -1,10 +1,10 @@
-<h1> EDIT Order </h1>
+<h1> Edit Order </h1>
   <%= simple_form_for [@product, @order] do |f| %>
     <%= f.input :quantity %>
-    <%= f.input :delivery %>
-    <%= f.input :payment %>
+    <%= f.input :delivery, collection: ["At seller's address", "receive at the buyer's address", "pick up at shipping office"], prompt: "Choose delivery" %>
+    <%= f.input :payment, collection: ["Cash", "Credit Card", "PSE"], prompt: "Choose" %>
     <%= f.submit %>
-    <% if @order.user.role == true %>
+    <% if @order.user.role %>
     <%= f.input :status %>
     <% end %>
   <% end %>
