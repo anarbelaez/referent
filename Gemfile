@@ -52,7 +52,7 @@ gem "faker"
 
 gem "devise"
 gem "autoprefixer-rails"
-gem "font-awesome-sass", "~> 6.1"
+gem "font-awesome-sass", "~> 6.2.0"
 gem "simple_form", github: "heartcombo/simple_form"
 gem "better_errors"
 gem "binding_of_caller"
@@ -82,6 +82,3 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
-
-
-
