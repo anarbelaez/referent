@@ -19,7 +19,7 @@ class OrdersController < ApplicationController
     @order.product = @product
     @order.save
     if @order.save
-      redirect_to product_orders_path(@order)
+      redirect_to order_path(@order)
     else
       render :new, status: :unprocessable_entity
     end
@@ -38,13 +38,13 @@ class OrdersController < ApplicationController
   def destroy
     @order = Order.find(params[:id])
     @order.destroy
-    redirect_to order_path(@order), status: :see_other
+    redirect_to product_orders_path(@order), status: :see_other
   end
 
   private
 
   def order_params
-    params.require(:order).permit(:product_id, :current_user, :quantity, :payment, :delivery, :status) # preguntar status y user id=current_user
+    params.require(:order).permit(:product_id, :current_user, :quantity, :payment, :delivery, :status)
   end
 
   def set_product
