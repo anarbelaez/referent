@@ -1,7 +1,8 @@
 <ol>
 <% @referents.each do |user| %>
-  <li><span class="fw-bold"><%= user.brand %></span>:
-      <%= user.description %>
+  <li>
+    <span class="fw-bold"><%= user.brand %></span>:
+    <%= user.description %>
   </li>
 <% end %>
 </ol>
