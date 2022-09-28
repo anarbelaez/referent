@@ -1,10 +1,15 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: "pages#home"
 
+  # Pages
+  root to: "pages#home"
+  get "/results", to: "pages#search"
+
+  # Users
   get "/referents", to: "users#index"
   resources :users, only: [:show]
 
+  # Products
   resources :products, shallow: true do
     resources :orders
   end
