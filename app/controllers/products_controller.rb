@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: %i[show edit update destroy]
+  before_action :set_user, only: %i[new create]
 
   def index
     @products = Product.all
@@ -14,12 +15,13 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
+    @product.user = current_user
     @product.save
-    if @product.save
-      redirect_to product_path(@product)
-    else
-      render :new, status: :unprocessable_entity
-    end
+    # if @product.save
+    redirect_to product_path(@product)
+    # else
+    #   render :new, status: :unprocessable_entity
+    # end
   end
 
   def edit
@@ -44,5 +46,9 @@ class ProductsController < ApplicationController
 
   def set_product
     @product = Product.find(params[:id])
+  end
+
+  def set_user
+    @user = current_user
   end
 end
