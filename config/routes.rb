@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   # Pages
   root to: "pages#home"
-  get "/results", to: "pages#search"
+  get "/search", to: "pages#search"
 
   # Users
   get "/referents", to: "users#index"
