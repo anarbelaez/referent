@@ -1,2 +1,27 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="row">
+<div class="col-6">
+  <h2>Referents</h2>
+  <ol>
+  <% @referents.each do |referent| %>
+    <li class="fw-bold"><%= referent.brand %></li>
+    <p><%= referent.description %></p>
+  <% end %>
+  </ol>
+</div>
+<div class="border-start col-6">
+  <h2>Products</h2>
+  <ol>
+  <% @products.each do |product| %>
+    <li class="fw-bold"><%= product.name %></li>
+    <p>Description: <%= product.description %>
+      <br>
+      Price: <%= product.price %>
+    </p>
+  <% end %>
+  </ol>
+</div>
+</div>
+
+<%# @objects.each do |object| %>
+  <%# object %>
+<%# end %>
