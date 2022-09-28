@@ -34,5 +34,13 @@ class ProductsController < ApplicationController
     redirect_to products_path, status: :see_other
   end
 
+  private
 
+  def product_params
+
+  end
+
+  def set_product
+
+  end
 end
