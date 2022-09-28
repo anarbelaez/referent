@@ -2,11 +2,14 @@
   <div class="container">
     <%= link_to "REFERENT", root_path, class: "navbar-brand" %>
 
-    <div class="mx-auto">
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+    <div class="">
+      <%= simple_form_for :root, method: :get, html: { class: 'd-flex' } do |f| %>
+        <%= f.input :filter, as: :select, collection: [["Products", "products"], ["Referents", "referents"]], selected: "products", label: false %>
+        <%= f.input :query, class: "form-control", value: params[:query], label: false %>
+        <div class="m-0">
+          <%= f.submit "Search", class: "btn btn-outline-success" %>
+        </div>
+      <% end %>
     </div>
 
     <div>
