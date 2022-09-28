@@ -15,6 +15,7 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
+    @order.user = current_user
     @order.product = @product
     @order.save
     if @order.save
@@ -43,7 +44,7 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:product_id, :quantity, :payment, :delivery, :status) # preguntar status y user id=current_user
+    params.require(:order).permit(:product_id, :current_user, :quantity, :payment, :delivery, :status) # preguntar status y user id=current_user
   end
 
   def set_product
