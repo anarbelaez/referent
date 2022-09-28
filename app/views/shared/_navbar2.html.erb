@@ -1,0 +1,37 @@
+<nav class="navbar navbar-expand-lg bg-light">
+  <div class="container">
+    <%= link_to "REFERENT", root_path, class: "navbar-brand" %>
+
+    <div class="mx-auto">
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+
+    <div>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item dropdown">
+          <i class="bi bi-list"></i>
+          <%= image_tag "https://st3.depositphotos.com/6672868/13701/v/600/depositphotos_137014128-stock-illustration-user-profile-icon.jpg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+
+          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+
+            <% if user_signed_in? %>
+              <%= link_to "My profile", user_path(current_user), class: "dropdown-item" %>
+              <%= link_to "My Orders", "#", class: "dropdown-item" %>
+              <%= link_to "Favourites", "#", class: "dropdown-item" %>
+              <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+            <% else %>
+              <%= link_to "Log in", new_user_session_path, class: "dropdown-item" %>
+              <%= link_to "Sign up", new_user_registration_path, class: "dropdown-item" %>
+              <%= link_to "Another action", "#", class: "dropdown-item" %>
+            </div>
+            <% end %>
+
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
