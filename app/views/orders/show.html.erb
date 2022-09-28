@@ -1,17 +1,23 @@
-
- <ul> <%= @order.status %>
-  <%= @order.quantity %>
-   <%= @order.payment %>
-   <%= @order.delivery %>
-   <%= @order.user_id %>
-    <%= @order.product_id %>
-    </ul>
- <%= link_to "Delete Order", order_path(@order), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:'btn-flat'%>
-
-
+ <ul>
+   <%= quantity = @order.quantity %>
+  <%= @order.payment %>
+  <%= @order.delivery %>
+  <%= @order.user_id %>
+  <%= @order.product_id %>
+  </ul>
+  <%= price = @order.product.price %>
+<hr>
+<p>total</p>
+<%= quantity * price %>
+<hr>
 <% if @order.status == true %>
  <%= "ORDER COMPLETED" %>
 <% else %>
 <%= "ORDER OPEN" %>
 <% end %>
 
+<h3> <%= @order.user.first_name %>  <%= @order.user.last_name %></h3>
+
+<hr>
+ <%= link_to "Delete Order", order_path(@order), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:'btn-flat'%>
+ <%= link_to "BACK TO BUY", products_path %>

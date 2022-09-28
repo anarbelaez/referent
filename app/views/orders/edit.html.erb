@@ -1,8 +1,10 @@
-<%= @order %>
 <h1> EDIT Order </h1>
   <%= simple_form_for [@product, @order] do |f| %>
     <%= f.input :quantity %>
     <%= f.input :delivery %>
     <%= f.input :payment %>
     <%= f.submit %>
+    <% if @order.user.role == true %>
+    <%= f.input :status %>
+    <% end %>
   <% end %>
