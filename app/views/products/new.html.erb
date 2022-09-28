@@ -1,1 +1,15 @@
-<%= render 'form' %>
+<div class="container">
+<h1 class="my-5">New Product</h1>
+  <%= simple_form_for(@product) do |f| %>
+    <%= f.input :name %>
+    <%= f.input :description %>
+    <%= f.input :price %>
+    <%= f.input :stock %>
+    <%= f.input :size %>
+    <%= f.input :color %>
+    <%= f.input :category %>
+    <%= f.input :genre %>
+    <%= f.input :user_id %>
+    <%= f.submit %>
+  <% end %>
+</div>
