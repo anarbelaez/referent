@@ -1,0 +1,5 @@
+<%= @orders %>
+<% @orders.each do |order| %>
+ <h1> <%= order.status %> <%= order.quantity %> <%= order.payment %> <%= order.delivery %> <%= order.user_id %> <%= order.product_id %></h1>
+
+<% end %>
