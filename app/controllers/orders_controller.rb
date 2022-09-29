@@ -1,10 +1,6 @@
 class OrdersController < ApplicationController
   before_action :set_product, only: %i[new create]
 
-  def index
-    @orders = current_user.orders.all
-  end
-
   def new
     @order = Order.new
   end
@@ -50,5 +46,4 @@ class OrdersController < ApplicationController
   def set_product
     @product = Product.find(params[:product_id])
   end
-
 end
