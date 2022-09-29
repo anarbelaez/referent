@@ -7,7 +7,11 @@ Rails.application.routes.draw do
 
   # Users
   get "/referents", to: "users#index"
-  resources :users, only: [:show]
+  resources :users, only: [:show] do
+    # get "/products", to: "user#products"
+    get :products
+    get :orders
+  end
 
   # Products
   resources :products, shallow: true do
