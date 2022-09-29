@@ -3,9 +3,9 @@
     <%= link_to "REFERENT", root_path, class: "navbar-brand" %>
 
     <div class="">
-      <%= simple_form_for :root, method: :get, html: { class: 'd-flex' } do |f| %>
-        <%= f.input :filter, as: :select, collection: [["Products", "products"], ["Referents", "referents"]], selected: "products", label: false %>
-        <%= f.input :query, class: "form-control", value: params[:query], label: false %>
+      <%= simple_form_for :root, method: :get, html: { class: 'd-flex m-0' } do |f| %>
+        <%= f.input :filter, wrapper_html: { id: 'sin-margin' }, as: :select, collection: [["Products", "products"], ["Referents", "referents"]], selected: "products", label: false %>
+        <%= f.input :query, wrapper_html: { id: 'sin-margin' }, value: params[:query], label: false %>
         <div class="m-0">
           <%= f.submit "Search", class: "btn btn-outline-success" %>
         </div>
