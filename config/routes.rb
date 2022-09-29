@@ -1,9 +1,19 @@
 Rails.application.routes.draw do
-  get 'users/index'
-  get 'users/show'
   devise_for :users
-  root to: "pages#home"
 
+  # Pages
+  root to: "pages#home"
+  get "/search", to: "pages#search"
+
+  # Users
+  get "/referents", to: "users#index"
+  resources :users, only: [:show] do
+    # get "/products", to: "user#products"
+    get :products
+    get :orders
+  end
+
+  # Products
   resources :products, shallow: true do
     resources :orders
   end

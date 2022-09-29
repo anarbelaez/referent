@@ -1,2 +1,32 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<% if @user.role == true %>
+  <h1>I am a Referent</h1>
+  <ol>
+    <li><%= @user.brand %></li>
+    <li><%= @user.description %></li>
+  </ol>
+
+  <h2>My products</h2>
+  <% @user.products.each do |product| %>
+    Name: <%= product.name %> <br>
+    Price: <%= product.price %>, Stock: <%= product.stock %>, Color: <%= product.color %> <br>
+    Description: <%= product.description %> <br>
+    Category: <%= product.category %>
+    <hr>
+  <% end %>
+
+<% elsif @user == current_user %>
+  <h1>I am a Fashion Lover</h1>
+    <ol>
+      <li><%= current_user.email %>, <%= current_user.first_name %> <%= current_user.last_name %></li>
+    </ol>
+
+    <% @user.orders.each do |order| %>
+      Name: <%= order.status %> <br>
+      Quantity: <%= order.quantity %>, Payment: <%= order.payment %>, Delivery: <%= order.delivery %> <br>
+      Product: <%= order.product.name %> <br>
+    <hr>
+  <% end %>
+
+<% else %>
+  <p>Oh oh!</p>
+<% end %>
