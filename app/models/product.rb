@@ -2,7 +2,7 @@ class Product < ApplicationRecord
   belongs_to :user
   has_many :orders
 
-  validates :name, :price, :stock, :size, :category, :genre, :user, presence: true
+  validates :name, :price, :size, :category, :genre, :user, presence: true
   validates :name, length: { minimum: 6 }
   validates :description, length: { maximum: 200 }
   validates :price, numericality: { greater_than: 0 }

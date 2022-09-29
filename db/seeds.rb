@@ -39,7 +39,6 @@ puts "Creating products"
     name: Faker::Commerce.product_name,
     description: Faker::Lorem.sentence(word_count: 6),
     price: rand(20..30),
-    stock: rand(1..20),
     user_id: referrers.sample.id,
     size: sizes.sample,
     color: Faker::Color.color_name,
@@ -52,7 +51,6 @@ puts "Creating orders"
 5.times do
   Order.create(
     status: [true, false].sample,
-    quantity: rand(1..5),
     payment: payment.sample,
     delivery: delivery.sample,
     user_id: fashion_lovers.sample.id,
