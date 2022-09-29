@@ -6,8 +6,10 @@ class Product < ApplicationRecord
   validates :name, length: { minimum: 6 }
   validates :description, length: { maximum: 200 }
   validates :price, numericality: { greater_than: 0 }
-  validates :stock, numericality: { only_integer: true, greater_than: 0 }
   validates :size, inclusion: { in: %w[XS S M L XL] }
-  validates :category, inclusion: { in: %w[TOP BOTTOM DRESSES SHOES ACCESORIES] }
-  validates :genre, inclusion: { in: %w[WOMEN MEN KIDS UNISEX] }
+  validates :category, inclusion: { in: %w[top bottom dresses shoes accesories] }
+  validates :genre, inclusion: { in: %w[women men kids unisex] }
+  validates :status, inclusion: [true, false] # True - Disponible, False - Vendido
+
+  scope :availables, -> { where(status: true) }
 end
