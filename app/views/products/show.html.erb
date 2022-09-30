@@ -1,7 +1,7 @@
 <h1><%= @product.name %></h1>
 
 <%# Si estoy logueado y soy un usuario referent puedo ver estas opciones %>
-<% if user_signed_in? && current_user.referent? %>
+<% if user_signed_in? && current_user.id.to_i == @product.user_id %>
 
 <%= link_to edit_product_path do %>
   <i class="fa-solid fa-pen-to-square"></i>
@@ -21,3 +21,9 @@
 <p> <%= @product.color %> </p>
 <p> <%= @product.category %> </p>
 <p> <%= @product.genre %> </p>
+
+<% unless user_signed_in? && current_user.referent? %>
+<%= link_to "I want it!", new_product_order_path(@product) %>
+<% end %>
+
+<%= link_to "Home", home_path %>

@@ -1,7 +1,7 @@
 <h1> New Order </h1>
   <%= simple_form_for [@product, @order] do |f| %>
-    <%= f.input :delivery, collection: ["At seller's address", "receive at the buyer's address", "pick up at shipping office"], prompt: "Choose delivery" %>
-    <%= f.input :payment, collection: ["Cash", "Credit Card", "PSE"], prompt: "Choose" %>
+    <%= f.input :delivery, collection: ["Home delivery", "Shipping to a delivery point"], prompt: "Choose delivery" %>
+    <%= f.input :payment, collection: %w[cash debit credit], prompt: "Choose" %>
     <%= f.input :status %>
     <%= f.submit %>
   <% end %>

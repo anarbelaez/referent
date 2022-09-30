@@ -18,6 +18,7 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     @product.user = current_user
+    @product.status = false
     @product.save
     if @product.save
       redirect_to product_path(@product)
@@ -43,7 +44,7 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:name, :description, :price, :user_id, :size, :color, :category, :genre, :photos [])
+    params.require(:product).permit(:name, :description, :price, :user_id, :size, :color, :category,:genre, photos: [])
   end
 
   def set_product

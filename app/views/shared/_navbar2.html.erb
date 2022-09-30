@@ -25,7 +25,9 @@
 
               <%= link_to "Details", user_details_path(current_user) , class: "dropdown-item" %>
 
-              <%= link_to "Favourites", "#", class: "dropdown-item" %>
+              <% if current_user.referent? %>
+                <%= link_to "New product", new_product_path, class: "dropdown-item" %>
+              <% end %>
               <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
             <% else %>
               <%= link_to "Log in", new_user_session_path, class: "dropdown-item" %>

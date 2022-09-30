@@ -9,7 +9,7 @@ class User < ApplicationRecord
   validates :description, length: { maximum: 200 }
 
   has_many :products, dependent: :delete_all
-  has_many :orders
+  has_many :orders, dependent: :delete_all
 
   has_one_attached :photo
 
