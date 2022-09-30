@@ -1,10 +1,6 @@
 class OrdersController < ApplicationController
   before_action :set_product, only: %i[new create]
 
-  def index
-    @orders = current_user.orders.all
-  end
-
   def new
     @order = Order.new
   end
@@ -44,11 +40,10 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:product_id, :current_user, :quantity, :payment, :delivery, :status)
+    params.require(:order).permit(:product_id, :current_user, :payment, :delivery, :status)
   end
 
   def set_product
     @product = Product.find(params[:product_id])
   end
-
 end

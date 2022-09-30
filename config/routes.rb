@@ -3,7 +3,6 @@ Rails.application.routes.draw do
 
   # Pages
   root to: "pages#home", as: :home
-  get "/search", to: "pages#search"
 
   # Users
   get "/referents", to: "users#index"
@@ -14,6 +13,6 @@ Rails.application.routes.draw do
 
   # Products
   resources :products, shallow: true do
-    resources :orders
+    resources :orders, except: [:index]
   end
 end
