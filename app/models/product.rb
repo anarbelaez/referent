@@ -2,6 +2,8 @@ class Product < ApplicationRecord
   belongs_to :user
   has_many :orders
 
+  has_many_attached :photos
+
   validates :name, :price, :size, :category, :genre, :user, presence: true
   validates :name, length: { minimum: 6 }
   validates :description, length: { maximum: 200 }

@@ -11,6 +11,8 @@ class User < ApplicationRecord
   has_many :products
   has_many :orders
 
+  has_one_attached :photo
+
   scope :referents, -> { where(role: true).select(:id, :brand, :description) }
   scope :fashion_lovers, -> { where.not(role: true) }
 

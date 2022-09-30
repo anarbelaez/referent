@@ -10,6 +10,7 @@
     <%# Brand and description %>
     <%= f.input :brand %>
     <%= f.input :description, as: :text, :input_html => { rows: 5, cols: 10 }%>
+    <%= f.input :photo, as: :file %>
 
     <%= f.input :email, required: true, autofocus: true %>
 
