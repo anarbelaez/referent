@@ -1,5 +1,8 @@
 <h1><%= @product.name %></h1>
 
+<%# Si estoy logueado y soy un usuario referent puedo ver estas opciones %>
+<% if user_signed_in? && current_user.referent? %>
+
 <%= link_to edit_product_path do %>
   <i class="fa-solid fa-pen-to-square"></i>
 <% end %>
@@ -7,6 +10,8 @@
 <%=  link_to product_path(@product),
   data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
   <i class="fa-solid fa-trash"></i>
+<% end %>
+
 <% end %>
 
 <p> <%= @product.user_id %> </p>
