@@ -1,14 +1,12 @@
  <ul>
-   <%= quantity = @order.quantity %>
   <%= @order.payment %>
-  <%= @order.delivery %>
   <%= @order.user_id %>
   <%= @order.product_id %>
   </ul>
   <%= price = @order.product.price %>
 <hr>
 <p>total</p>
-<%= quantity * price %>
+<%#= quantity * price %>
 <hr>
 <% if @order.status == true %>
  <%= "ORDER COMPLETED" %>

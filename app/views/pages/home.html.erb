@@ -1,21 +1,21 @@
 <div class="row">
 <div class="col-6">
-  <h2>Referents</h2>
+  <h2><%= link_to "Referents", referents_path %></h2>
   <ol>
   <% @referents.each do |referent| %>
-    <li class="fw-bold"><%= referent.brand %></li>
+    <li class="fw-bold"><%= link_to referent.brand, user_path(referent) %></li>
     <p><%= referent.description %></p>
   <% end %>
   </ol>
 </div>
 <div class="border-start col-6">
-  <h2>Products</h2>
+  <h2><%= link_to "Products", products_path %></h2>
   <ol>
   <% @products.each do |product| %>
-    <li class="fw-bold"><%= product.name %></li>
-    <p>Description: <%= product.description %>
+    <li class="fw-bold"><%= link_to product.name, product_path(product) %></li>
+    <p><%= product.description %>
       <br>
-      Price: <%= product.price %>
+      $<%= product.price %>
     </p>
   <% end %>
   </ol>

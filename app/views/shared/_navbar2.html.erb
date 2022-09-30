@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-light">
   <div class="container">
-    <%= link_to "REFERENT", root_path, class: "navbar-brand" %>
+    <%= link_to "REFERENT", home_path, class: "navbar-brand" %>
 
     <div class="">
       <%= simple_form_for :root, method: :get, html: { class: 'd-flex m-0' } do |f| %>
@@ -22,7 +22,9 @@
 
             <% if user_signed_in? %>
               <%= link_to "My profile", user_path(current_user), class: "dropdown-item" %>
-              <%= link_to "My Orders", "#", class: "dropdown-item" %>
+
+              <%= link_to "Details", user_details_path(current_user) , class: "dropdown-item" %>
+
               <%= link_to "Favourites", "#", class: "dropdown-item" %>
               <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
             <% else %>
