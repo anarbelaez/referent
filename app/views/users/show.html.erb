@@ -1,4 +1,4 @@
-<% if @user.role == true %>
+<% if @user.referent? %>
   <h1>I am a Referent</h1>
   <ol>
     <li><%= @user.brand %></li>
@@ -8,7 +8,7 @@
   <h2>My products</h2>
   <% @user.products.each do |product| %>
     Name: <%= product.name %> <br>
-    Price: <%= product.price %>, Stock: <%= product.stock %>, Color: <%= product.color %> <br>
+    Price: <%= product.price %>, Color: <%= product.color %> <br>
     Description: <%= product.description %> <br>
     Category: <%= product.category %>
     <hr>
@@ -20,10 +20,11 @@
       <li><%= current_user.email %>, <%= current_user.first_name %> <%= current_user.last_name %></li>
     </ol>
 
+    <p>My orders</p>
     <% @user.orders.each do |order| %>
-      Name: <%= order.status %> <br>
-      Quantity: <%= order.quantity %>, Payment: <%= order.payment %>, Delivery: <%= order.delivery %> <br>
       Product: <%= order.product.name %> <br>
+      Status: <%= "Open" if order.status %> <br>
+      Payment: <%= order.payment %> | <%= order.delivery %> <br>
     <hr>
   <% end %>
 
