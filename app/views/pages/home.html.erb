@@ -1,27 +1,91 @@
-<div class="row">
-<div class="col-6">
-  <h2><%= link_to "Referents", referents_path %></h2>
-  <ol>
-  <% @referents.each do |referent| %>
-    <li class="fw-bold"><%= link_to referent.brand, user_path(referent) %></li>
-    <p><%= referent.description %></p>
-  <% end %>
-  </ol>
+<%# TEMPORAL %>
+<% brands = [
+  "https://images.unsplash.com/photo-1510897345173-4d938815feb4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80",
+  "https://images.unsplash.com/photo-1633409361618-c73427e4e206?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80",
+  "https://images.unsplash.com/photo-1525268771113-32d9e9021a97?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80",
+  "https://images.unsplash.com/photo-1528840942-6d0562674ad6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80",
+  "https://images.unsplash.com/photo-1522125123931-9304d91a42ee?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=582&q=80",
+  "https://images.unsplash.com/photo-1630750793287-fd38912df4d1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=548&q=80",
+  "https://images.unsplash.com/photo-1552985247-03b1fddb53d1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=622&q=80"
+]
+
+products = [
+  "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80",
+  "https://images.unsplash.com/photo-1594631770635-f2915410b410?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80",
+  "https://images.unsplash.com/photo-1617178388553-a9d022974a5c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80",
+  "https://images.unsplash.com/photo-1601460588655-109bd38204db?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80",
+  "https://images.unsplash.com/photo-1519167130418-c3640bd21b7e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80",
+  "https://images.unsplash.com/photo-1630396592061-21f071e1a36c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1780&q=80",
+  "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=436&q=80",
+  "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=772&q=80",
+  "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+]
+
+
+%>
+
+
+
+
+<%# END TEMPORAL %>
+
+<div class="border-bottom">
+  <%= link_to "Products", products_path, class: "text-decoration-none fs-4 text-dark d-inline" %>
+  <i class="bi bi-chevron-right"></i>
 </div>
-<div class="border-start col-6">
-  <h2><%= link_to "Products", products_path %></h2>
-  <ol>
+
+<div class="row mt-2 gy-2">
   <% @products.each do |product| %>
-    <li class="fw-bold"><%= link_to product.name, product_path(product) %></li>
-    <p><%= product.description %>
-      <br>
-      $<%= product.price %>
-    </p>
+    <div class="col-6 col-md-3 my-3">
+      <div class="card border-0 rounded-0"
+      style="height: 270px;
+      background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(<%= products.sample %>)"></div>
+    <%= link_to product.name, product_path(product), class: "link-dark text-decoration-none" %>
+    <div class="d-flex justify-content-between align-items-center">
+      <p class="m-0">$<%= product.price %></p>
+    <%= link_to "I want it!", new_product_order_path(product), class: "btn btn-info p-0 px-1" %>
+    </div>
+    </div>
   <% end %>
-  </ol>
+
+  <div class="col-12 mt-5 d-flex justify-content-center">
+    <%= link_to "Explore all products 🔍", products_path, class: "text-center text-decoration-none text-dark border-bottom fs-5" %>
+  </div>
 </div>
+
+
+<div class="mt-5 border-bottom">
+  <%= link_to "Referents", referents_path, class: "text-decoration-none fs-4 text-dark d-inline" %>
+  <i class="bi bi-chevron-right"></i>
+</div>
+<div class="row mt-2 g-3">
+  <% num = 0 %>
+  <% @referents.each do |referent| %>
+    <div class="col-4 col-md-2">
+
+    <div class="card rounded-circle border-0"
+     style="height: 150px;
+     background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(<%= brands[num] %>)">
+     <% num += 1 %>
+
+    <%= link_to referent.brand, user_path(referent), class: "link-light text-decoration-none" %>
+
+    </div>
+    </div>
+  <% end %>
+
+  <div class="col-12 mt-5 d-flex justify-content-center">
+    <%= link_to "See more Referents 🔍", referents_path, class: "text-center text-decoration-none text-dark border-bottom fs-5" %>
+  </div>
 </div>
 
 <%# @objects.each do |object| %>
   <%# object %>
 <%# end %>
+
+
+<div class="row my-5">
+  <div class="col-12">
+    <p class="fw-bold text-center pt-3"> Made with 🧡 by Katapi </p>
+  </div>
+</div>
