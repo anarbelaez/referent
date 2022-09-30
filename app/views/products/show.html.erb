@@ -1,29 +1,48 @@
-<h1><%= @product.name %></h1>
+<div class="row my-5">
+  <div class="col-12 d-flex">
+    <%= image_tag "https://cf.shopee.com.co/file/9b96075c4416dc19f877b1ec22492a44", height: 500, width: 400 %>
+    <%# Si estoy logueado y soy un usuario referent puedo ver estas opciones %>
 
-<%# Si estoy logueado y soy un usuario referent puedo ver estas opciones %>
-<% if user_signed_in? && current_user.id.to_i == @product.user_id %>
+    <div class="info ms-5">
+      <div class="row">
+        <div class="col-12">
+          <h1 class="border-bottom"><%= @product.name %></h1>
+          <p class="brand"> <%= @product.user.brand %> </p>
+          <p class="border-bottom"> <%= @product.description %> </p>
+        </div>
+      </div>
 
-<%= link_to edit_product_path do %>
-  <i class="fa-solid fa-pen-to-square"></i>
-<% end %>
+      <div class="row">
+        <div class="col-6">
+          <p>Size: <%= @product.size %> </p>
+          <p>Color: <%= @product.color %> </p>
+          <p>Category: <%= @product.category %> </p>
+          <p>Genre: <%= @product.genre %> </p>
+        </div>
 
-<%=  link_to product_path(@product),
-  data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
-  <i class="fa-solid fa-trash"></i>
-<% end %>
+        <div class="col-6">
+          <p>Price: <%= @product.price %> </p>
 
-<% end %>
+          <% unless user_signed_in? && current_user.referent? %>
+            <%= link_to "I want it!", new_product_order_path(@product), class: "btn btn-info col-12" %>
+          <% end %>
+        </div>
+      </div>
+      <% if user_signed_in? && current_user.id.to_i == @product.user_id %>
 
-<p> <%= @product.user_id %> </p>
-<p> <%= @product.description %> </p>
-<p> <%= @product.price %> </p>
-<p> <%= @product.size %> </p>
-<p> <%= @product.color %> </p>
-<p> <%= @product.category %> </p>
-<p> <%= @product.genre %> </p>
+        <%= link_to edit_product_path do %>
+          <i class="fa-solid fa-pen-to-square"></i>
+        <% end %>
 
-<% unless user_signed_in? && current_user.referent? %>
-<%= link_to "I want it!", new_product_order_path(@product) %>
-<% end %>
+        <%=  link_to product_path(@product),
+        data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
+        <i class="fa-solid fa-trash"></i>
+        <% end %>
 
-<%= link_to "Home", home_path %>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-3 my-4">
+    <%= link_to "Home", home_path, class: "btn btn-info" %>
+  </div>
+</div>
