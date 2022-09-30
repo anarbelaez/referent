@@ -44,7 +44,8 @@ puts "Creating products"
     size: sizes.sample,
     color: Faker::Color.color_name,
     category: categories.sample,
-    genre: genres.sample
+    genre: genres.sample,
+    status: [true, false].sample
   )
 end
 
