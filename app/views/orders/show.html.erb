@@ -1,21 +1,67 @@
- <ul>
-  <%= @order.payment %>
-  <%= @order.user_id %>
-  <%= @order.product_id %>
-  </ul>
-  <%= price = @order.product.price %>
-<hr>
-<p>total</p>
-<%#= quantity * price %>
-<hr>
-<% if @order.status == true %>
- <%= "ORDER COMPLETED" %>
-<% else %>
-<%= "ORDER OPEN" %>
-<% end %>
+<div class="row">
+  <hr>
 
-<h3> <%= @order.user.first_name %>  <%= @order.user.last_name %></h3>
+  <div class="col-8">
 
-<hr>
- <%= link_to "Delete Order", order_path(@order), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:'btn-flat'%>
- <%= link_to "BACK TO BUY", products_path %>
+
+    <div class="card-order">
+     <p>Payment method  <strong><%= @order.payment %></strong></p>
+    </div>
+
+
+
+    <div class="card-product-o">
+      <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+      <div class="card-product-infos-o">
+        <h2> <%= @order.product.name %>  </h2>
+        <p> <%= @order.product.description %> </p>
+        <p><strong>     $ <%= price = @order.product.price %> </p></strong>
+      </div>
+    </div>
+
+    <hr>
+
+    <% if @order.status %>
+      <a class="btn btn-ghost" <%= link_to "Delete Order", order_path(@order), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:'btn-flat'%>
+    </a>
+
+    <a class="btn btn-gradient" <%= link_to "Edit Order", edit_order_path %></a>
+
+
+    <% end %>
+
+    <a class="btn btn-flat"  <%= link_to "BACK TO BUY", products_path %>
+    </a>
+
+  </div>
+
+
+
+
+  <div class="col-4">
+    <div class="card-order">
+      <% if @order.status %>
+      <%= "ORDER OPEN" %>
+      <% else %>
+      <%= "ORDER COMPLETED" %>
+      <% end %>
+    </div>
+
+    <div class="card-order">
+      <ul>
+        <h3>Purchase detail</h3>
+        <hr>
+          <li> <%= @order.product.name %> $ <%= @order.product.price %>  </li>
+      </ul>
+    </div>
+
+    <div class="card-order">
+      <ul>
+        <h3>Delivery detail</h3>
+        <hr>
+          <li> <%= @order.delivery %>  </li>
+      </ul>
+    </div>
+
+  </div>
+</div>
