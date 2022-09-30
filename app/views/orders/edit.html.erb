@@ -1,4 +1,9 @@
-<h1> Edit Order </h1>
+ <hr>
+  <div class="card-order">
+    <span> <i class="fa-solid fa-cart-shopping"></i>    1 order will be edited</span>
+  </div>
+
+  <div class="card-order">
   <%= simple_form_for [@product, @order] do |f| %>
     <%= f.input :delivery, collection: ["At seller's address", "receive at the buyer's address", "pick up at shipping office"], prompt: "Choose delivery" %>
     <%= f.input :payment, collection: ["Cash", "Credit Card", "PSE"], prompt: "Choose" %>
@@ -7,3 +12,7 @@
     <%= f.input :status %>
     <% end %>
   <% end %>
+
+    <img width="400" src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+
+</div>

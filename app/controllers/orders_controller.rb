@@ -34,7 +34,7 @@ class OrdersController < ApplicationController
   def destroy
     @order = Order.find(params[:id])
     @order.destroy
-    redirect_to orders_path(@order), status: :see_other
+    redirect_to user_path(current_user), status: :see_other
   end
 
   private
