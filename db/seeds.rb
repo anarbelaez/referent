@@ -1,8 +1,8 @@
-categories = ["shirt", "jeans", "shoes"]
-genres = ["women", "men", "kids", "unisex"]
-payment = ["Cash", "Debit Card", "Credit Card"]
+categories = %w[top bottom dresses shoes accesories]
+genres = %w[women men kids unisex]
+payment = %w[cash debit credit]
 delivery = ["Home delivery", "Shipping to a delivery point"]
-sizes = ["S", "M", "L"]
+sizes = %w[XS S M L XL]
 
 puts "Creating users Referrer"
 10.times do
