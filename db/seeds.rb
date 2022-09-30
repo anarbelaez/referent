@@ -4,19 +4,19 @@ payment = %w[cash debit credit]
 delivery = ["Home delivery", "Shipping to a delivery point"]
 sizes = %w[XS S M L XL]
 
-puts "Creating users Referrer"
-10.times do
-  user = User.new(
-    first_name: Faker::Name.first_name,
-    last_name: Faker::Name.last_name,
-    email: Faker::Internet.email,
-    password: "123456",
-    role: true,
-    brand: Faker::Commerce.brand,
-    description: Faker::Lorem.sentence(word_count: 4)
-  )
-  user.save!
-end
+# puts "Creating users Referrer"
+# 10.times do
+#   user = User.new(
+#     first_name: Faker::Name.first_name,
+#     last_name: Faker::Name.last_name,
+#     email: Faker::Internet.email,
+#     password: "123456",
+#     role: true,
+#     brand: Faker::Commerce.brand,
+#     description: Faker::Lorem.sentence(word_count: 4)
+#   )
+#   user.save!
+# end
 
 puts "Creating Fashion Lovers"
 10.times do
