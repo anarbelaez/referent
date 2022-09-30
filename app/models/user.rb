@@ -8,7 +8,7 @@ class User < ApplicationRecord
   # validates :brand, presence: true # , on: :update
   validates :description, length: { maximum: 200 }
 
-  has_many :products
+  has_many :products, dependent: :delete_all
   has_many :orders
 
   has_one_attached :photo
