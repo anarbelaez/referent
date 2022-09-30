@@ -1,0 +1,17 @@
+<% if current_user.referent? %>
+  <h2>My products</h2>
+  <ol>
+  <% @products.each do |product| %>
+    <li><%= product.name %></li>
+    <p><%= product.description %></p>
+  <% end %>
+  </ol>
+<% else %>
+  <h2>My orders</h2>
+  <ol>
+  <% @orders.each do |order| %>
+    <li class="fw-bold"><%= order.product.name %></li>
+    <p><%= order.payment %> | <%= order.delivery %></p>
+  <% end %>
+  </ol>
+<% end %>
