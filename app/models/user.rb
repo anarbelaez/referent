@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :first_name, :last_name, presence: true, length: { minimum: 2 }
-  validates :brand, uniqueness: true # , on: :update
+  # validates :brand, presence: true # , on: :update
   validates :description, length: { maximum: 200 }
 
   has_many :products
