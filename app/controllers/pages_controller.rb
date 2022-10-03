@@ -2,7 +2,7 @@ class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:home]
 
   def home
-    @referents = User.referents.last(6)
+    @referents = User.referent.last(6)
     @products = Product.all.last(24)
 
     search = params[:root]
