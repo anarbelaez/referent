@@ -20,15 +20,4 @@ class User < ApplicationRecord
   def name
     "#{first_name} #{last_name}"
   end
-
-  # scope :referents, -> { where(role: true).select(:id, :brand, :description) }
-  # scope :fashion_lovers, -> { where.not(role: true) }
-
-  # def referent?
-  #   role == true
-  # end
-
-  # def fashion_lover?
-  #   role == false
-  # end
 end

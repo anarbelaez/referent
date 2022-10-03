@@ -7,6 +7,7 @@ class Product < ApplicationRecord
   validates :name, length: { minimum: 5 }
   validates :description, length: { maximum: 200 }
   validates :price, numericality: { greater_than: 0 }
+  validates :status, inclusion: [true, false] # True - Avaliable, False - Sold
 
   # Con suffix: true, podemos usar Product.small_size
   enum :size, { small: 0, medium: 1, large: 2, unique: 3 }, suffix: true
@@ -18,7 +19,6 @@ class Product < ApplicationRecord
 
   enum :genre, { women: 0, men: 1, unisex: 2 }
 
-  validates :status, inclusion: [true, false] # True - Avaliable, False - Sold
-
   scope :available, -> { where(status: true) }
+  scope :sold, -> { where(status: false) }
 end
