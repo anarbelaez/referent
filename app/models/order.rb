@@ -3,10 +3,11 @@ class Order < ApplicationRecord
   belongs_to :product
 
   validates :status, :payment, :delivery, :user, :product, presence: true
-  validates :status, inclusion: [true, false] # True - Entregado, False - No entregado
-  validates :payment, inclusion: { in: %w[cash debit credit] }
-  validates :delivery, inclusion: { in: ["Home delivery", "Shipping to a delivery point"] }
+  validates :status, inclusion: [true, false] # True - Open, False - Closed
 
-  scope :closed, -> { where(status: true) } # Puedo usar Order.closed
-  scope :open, -> { where(status: false) } # Puedo usar Order.open
+  enum :payment, { cash: 0, debit_card: 1, credit_card: 2 }, scopes: false
+  enum :delivery, { home_delivery: 0, delivery_point: 1 }, scopes: false
+
+  scope :open, -> { where(status: true) } # Puedo usar Order.open
+  scope :closed, -> { where(status: false) } # Puedo usar Order.closed
 end

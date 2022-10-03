@@ -1,17 +1,24 @@
 class Product < ApplicationRecord
   belongs_to :user
   has_many :orders
-
   has_many_attached :photos
 
-  validates :name, :price, :size, :category, :genre, :user, presence: true
-  validates :name, length: { minimum: 6 }
+  validates :name, :price, :size, :category, :genre, :user, :status, presence: true
+  validates :name, length: { minimum: 5 }
   validates :description, length: { maximum: 200 }
   validates :price, numericality: { greater_than: 0 }
-  validates :size, inclusion: { in: %w[XS S M L XL] }
-  validates :category, inclusion: { in: %w[top bottom dresses shoes accesories] }
-  validates :genre, inclusion: { in: %w[women men kids unisex] }
-  validates :status, inclusion: [true, false] # True - Disponible, False - Vendido
 
-  scope :availables, -> { where(status: true) }
+  # Con suffix: true, podemos usar Product.small_size
+  enum :size, { small: 0, medium: 1, large: 2, unique: 3 }, suffix: true
+
+  enum :color, { black: 0, white: 1, red: 2, orange: 3, yellow: 4,
+                 green: 5, blue: 6, indigo: 7, purple: 8, multicolor: 9 }, suffix: true
+
+  enum :category, { top: 0, bottom: 1, dresses: 2, accesories: 3, shoes: 4 }, suffix: true
+
+  enum :genre, { women: 0, men: 1, unisex: 2 }
+
+  validates :status, inclusion: [true, false] # True - Avaliable, False - Sold
+
+  scope :available, -> { where(status: true) }
 end
