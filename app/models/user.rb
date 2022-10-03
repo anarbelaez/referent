@@ -17,7 +17,7 @@ class User < ApplicationRecord
   # validates :brand, presence: true # , on: :update
   validates :description, length: { maximum: 200 }
 
-  def full_name
+  def name
     "#{first_name} #{last_name}"
   end
 

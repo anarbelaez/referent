@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
-    @referents = User.referents
+    @referents = User.referent
   end
 
   def show
