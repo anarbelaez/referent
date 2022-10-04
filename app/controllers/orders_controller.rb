@@ -37,6 +37,11 @@ class OrdersController < ApplicationController
     redirect_to user_path(current_user), status: :see_other
   end
 
+  def change_status
+    @order = @order = Order.find(params[:id])
+   # if params[:status].present? && Order::
+  end
+
   private
 
   def order_params
