@@ -15,6 +15,7 @@ class OrdersController < ApplicationController
     @order.product = @product
     @order.save
     if @order.save
+      @product.mark_as_sold!
       redirect_to order_path(@order)
     else
       render :new, status: :unprocessable_entity
@@ -35,6 +36,12 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @order.destroy
     redirect_to user_path(current_user), status: :see_other
+  end
+
+  def close_order
+    order = Order.find(params[:order_id])
+    order.mark_as_closed!
+    redirect_to order_path(order)
   end
 
   private

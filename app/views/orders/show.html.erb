@@ -65,3 +65,14 @@
 
   </div>
 </div>
+
+<% if referent_product?(@order.product) %>
+  <% unless @order.status %>
+    <p>"Order closed</p>
+  <% else %>
+    <form action="<%=@order.id%>/mark" method="POST">
+      <input type='hidden' name='_method' value='PATCH'/>
+      <button type='submit' class="btn btn-info">Close order</button>
+    </form>
+  <% end %>
+<% end %>
