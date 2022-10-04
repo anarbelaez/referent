@@ -23,10 +23,6 @@ products = [
 
 
 %>
-
-
-
-
 <%# END TEMPORAL %>
 
 <div class="border-bottom">
@@ -40,14 +36,14 @@ products = [
       <div class="card border-0 rounded-0"
       style="height: 270px;
       background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(<%= products.sample %>)"></div>
+
     <%= link_to product.name, product_path(product), class: "link-dark text-decoration-none" %>
+
     <div class="d-flex justify-content-between align-items-center">
       <p class="m-0">$<%= product.price %></p>
-    <%= link_to "I want it!", new_product_order_path(product), class: "btn btn-info p-0 px-1" %>
+      <%= link_to "I want it!", new_product_order_path(product), class: "btn btn-info p-0 px-1" %>
     </div>
     </div>
-
-
   <% end %>
       <div class="col-6 col-md-3 my-3">
       <div class="card border-0 rounded-0"
@@ -65,9 +61,6 @@ products = [
     <%= link_to "Explore all products 🔍", products_path, class: "text-center text-decoration-none text-dark border-bottom fs-5" %>
   </div>
 </div>
-
-
-
 
 
 <div class="mt-5 border-bottom">
@@ -94,11 +87,6 @@ products = [
     <%= link_to "See more Referents 🔍", referents_path, class: "text-center text-decoration-none text-dark border-bottom fs-5" %>
   </div>
 </div>
-
-<%# @objects.each do |object| %>
-  <%# object %>
-<%# end %>
-
 
 <div class="row my-5">
   <div class="col-12">
