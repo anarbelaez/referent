@@ -30,7 +30,7 @@ class Product < ApplicationRecord
     status
   end
 
-  def mark_as_sold
-    update(status: false)
+  def mark_as_sold!
+    update_attribute(:status, false)
   end
 end
