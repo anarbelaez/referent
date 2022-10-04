@@ -15,4 +15,5 @@ Rails.application.routes.draw do
   resources :products, shallow: true do
     resources :orders, except: [:index]
   end
+  
 end

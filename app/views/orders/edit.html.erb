@@ -7,15 +7,14 @@
 
   <img width="500" src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" />
   <%= simple_form_for [@product, @order] do |f| %>
-    <%= f.input :delivery, collection: ["Home delivery", "Shipping to a delivery point"], prompt: "Choose delivery",  as: :radio_buttons, label: 'How do you want to receive the product?', error: 'Please select one option' %>
-    <%= f.input :payment, collection: %w[cash debit credit], prompt: "Choose", as: :radio_buttons, label: 'What will be the payment method?', error: 'Please select one option' %>
+    <%= f.input :delivery, collection:  Order.deliveries.keys, prompt: "Choose delivery",  as: :radio_buttons, label: 'How do you want to receive the product?', error: 'Please select one option' %>
+    <%= f.input :payment, collection: Order.payments.keys, prompt: "Choose", as: :radio_buttons, label: 'What will be the payment method?', error: 'Please select one option'%>
     <%= f.submit %>
-    <% if @order.user.role %>
-    <%= f.input :status %>
-    <% end %>
+   <!-- <% if @order.user.role %> -->
+      <!--  <%= f.input :status, input_html: {value: false} %> -->
+   <!-- <% end %> -->
   <% end %>
 
 
 
 </div>
-
