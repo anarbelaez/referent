@@ -29,7 +29,7 @@ products = [
           <p class="m-0">$<%= product.price %></p>
         <%= link_to "I want it!", new_product_order_path(product), class: "btn btn-info p-0 px-1" %>
         </div>
-        <p> <%= product.user.brand %> </p>
+        <p> <%= product.brand %> </p>
     </div>
   <% end %>
 </div>
