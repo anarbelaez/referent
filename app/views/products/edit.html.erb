@@ -1,11 +1,43 @@
-<h1 class="my-5">Edit Product</h1>
-  <%= simple_form_for(@product) do |f| %>
-    <%= f.input :name %>
-    <%= f.input :description %>
-    <%= f.input :price %>
-    <%= f.input :size %>
-    <%= f.input :color %>
-    <%= f.input :category %>
-    <%= f.input :genre %>
-    <%= f.submit %>
-  <% end %>
+
+  <%# <div class="col-6 mt-5 d-flex justify-content-center"> %>
+
+  <div class="row mx-auto my-3 card-form col-10">
+
+  <div class="img-form-p col-5">
+    <div class="glassmorphism">
+
+    <h3>Let everyone know your creations!</h3>
+    <p>Post in <strong>Referent</strong> to all fashion lovers</p>
+
+</div>
+</div>
+
+
+ <div class="col-7 mt-5 d-flex justify-content-center">
+
+<div class="mx-auto" id="for1">
+    <h3>Edit Your Product</h3>
+    <hr>
+      <%= simple_form_for(@product) do |f| %>
+        <%= f.input :name, input_html: {class:"border-0 border-bottom border-1 bg-light border-dark"} %>
+        <%= f.input :description, input_html: {class:"border-0 border-bottom border-1 bg-light border-dark"} %>
+        <%= f.input :price, input_html: {class:"border-0 border-bottom border-1 bg-light border-dark"} %>
+        <%= f.input :size, collection:  Product.sizes.keys, prompt: "Choose Size", error: 'Please select one option',
+                    input_html: {class:"border-0 border-bottom border-1 bg-light border-dark"} %>
+        <%= f.input :color, collection:  Product.colors.keys, prompt: "Choose Color", error: 'Please select one option',
+                    input_html: {class:"border-0 border-bottom border-1 bg-light border-dark"} %>
+        <%= f.input :category, collection:  Product.categories.keys, prompt: "Choose Category", error: 'Please select one option',
+                    input_html: {class:"border-0 border-bottom border-1 bg-light border-dark"} %>
+        <%= f.input :genre, collection:  Product.genres.keys,prompt: "Choose Color", error: 'Please select one option',
+                    input_html: {class:"border-0 border-bottom border-1 bg-light border-dark"} %>
+        <%= f.input :photos, as: :file, input_html: { multiple: true }, input_html: {class:"border-0 bg-ligth rounded-pill"},
+                    input_html: {class:"border-0 bg-ligth rounded-pill"} %>
+        <%= f.submit submit_html: {class:"btn btn-dark col-12"} %>
+      <% end %>
+
+
+
+</div>
+
+
+</div>
