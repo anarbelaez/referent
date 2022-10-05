@@ -8,8 +8,6 @@ class Order < ApplicationRecord
   enum :payment, { cash: 0, debit_card: 1, credit_card: 2 }, scopes: false
   enum :delivery, { home_delivery: 0, delivery_point: 1 }, scopes: false
 
-  STATUSES = [true, false]
-
   scope :open, -> { where(status: true) } # Puedo usar Order.open
   scope :closed, -> { where(status: false) } # Puedo usar Order.closed
 
