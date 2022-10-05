@@ -1,0 +1,22 @@
+<%= form_with url: search_path, method: :get, class: "d-flex" do %>
+  <%= text_field_tag :query,
+    params[:query],
+    class: "form-control",
+    placeholder: "Search for products, brands..."
+  %>
+  <%= submit_tag "Search", class: "btn btn-primary" %>
+<% end %>
+
+<% unless @results.nil? %>
+  <% @results.each do |result| %>
+    <% if result.searchable_type == "Product" %>
+      <p>Product</p>
+      <%= result.searchable %>
+      <%= result.searchable.name %>
+    <% else %>
+      <p>Brand</p>
+      <%= result.searchable %>
+      <%= result.searchable.brand %>
+    <% end %>
+  <% end %>
+<% end %>
