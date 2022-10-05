@@ -21,4 +21,16 @@ class Product < ApplicationRecord
 
   scope :available, -> { where(status: true) }
   scope :sold, -> { where(status: false) }
+
+  def brand
+    user.brand
+  end
+
+  def available?
+    status
+  end
+
+  def mark_as_sold!
+    update_attribute(:status, false)
+  end
 end
