@@ -52,9 +52,6 @@
     <% if @order.status %>
          <!-- Button trigger modal -->
       <button type="button" class="btn bg-secondary btn-gradient" data-bs-toggle="modal" data-bs-target="#exampleModal"> Edit Order </button>
-    <% else %>
-        <!-- Button trigger modal disabled-->
-      <button type="button" class="btn bg-secondary btn-gradient" data-bs-toggle="modal" data-bs-target="#exampleModal" disabled> Edit Order </button>
 
         <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -69,7 +66,7 @@
               <%= f.input :delivery, collection:  Order.deliveries.keys, prompt: "Choose delivery",  as: :radio_buttons, label: 'How do you want to receive the product?', error: 'Please select one option' %>
               <%= f.input :payment, collection: Order.payments.keys, prompt: "Choose Payment Method", as: :radio_buttons, label: 'What will be the payment method?', error: 'Please select one option'%>
 
-                <% if @order.user.role %>
+              <% if @order.user.role %>
               <%= f.input :status %>
               <% end %>
             </div>
