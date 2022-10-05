@@ -1,4 +1,8 @@
 class Product < ApplicationRecord
+  include PgSearch::Model
+  multisearchable against: %i[name description user_id color category genre]
+  PgSearch::Multisearch.rebuild(Product)
+
   belongs_to :user
   has_many :orders
   has_many_attached :photos
