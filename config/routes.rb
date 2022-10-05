@@ -16,4 +16,6 @@ Rails.application.routes.draw do
     resources :orders, except: [:index]
   end
   
-end
+ # Orders
+  patch "orders/:order_id/mark", to: "orders#close_order"
+  end

@@ -12,4 +12,8 @@ class Order < ApplicationRecord
 
   scope :open, -> { where(status: true) } # Puedo usar Order.open
   scope :closed, -> { where(status: false) } # Puedo usar Order.closed
+
+  def mark_as_closed!
+    update_attribute(:status, false)
+  end
 end

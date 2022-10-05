@@ -1,0 +1,78 @@
+<div class="row">
+  <hr>
+
+  <div class="col-8">
+
+
+    <div class="card-order">
+     <p>Payment method  <strong><%= @order.payment %></strong></p>
+    </div>
+
+
+
+    <div class="card-product-o">
+      <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" />
+      <div class="card-product-infos-o">
+        <h2> <%= @order.product.name %>  </h2>
+        <p> <%= @order.product.description %> </p>
+        <p><strong>     $ <%= price = @order.product.price %> </p></strong>
+      </div>
+    </div>
+
+    <hr>
+
+    <% if @order.status %>
+      <a class="btn btn-ghost" <%= link_to "Delete Order", order_path(@order), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:'btn-flat'%>
+    </a>
+
+    <a class="btn btn-gradient" <%= link_to "Edit Order", edit_order_path %></a>
+
+
+    <% end %>
+
+    <a class="btn btn-flat"  <%= link_to "BACK TO BUY", products_path %>
+    </a>
+
+  </div>
+
+
+
+
+  <div class="col-4">
+    <div class="card-order">
+      <% if @order.status %>
+      <%= "ORDER OPEN" %>
+      <% else %>
+      <%= "ORDER COMPLETED" %>
+      <% end %>
+    </div>
+
+    <div class="card-order">
+      <ul>
+        <h3>Purchase detail</h3>
+        <hr>
+          <li> <%= @order.product.name %> $ <%= @order.product.price %>  </li>
+      </ul>
+    </div>
+
+    <div class="card-order">
+      <ul>
+        <h3>Delivery detail</h3>
+        <hr>
+          <li> <%= @order.delivery %>  </li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<% if referent_product?(@order.product) %>
+  <% unless @order.status %>
+    <p>"Order closed</p>
+  <% else %>
+    <form action="<%=@order.id%>/mark" method="POST">
+      <input type='hidden' name='_method' value='PATCH'/>
+      <button type='submit' class="btn btn-info">Close order</button>
+    </form>
+  <% end %>
+<% end %>
