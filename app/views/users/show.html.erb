@@ -1,9 +1,7 @@
 <% if @user.referent? %>
-  <h1>I am a Referent</h1>
-  <ol>
-    <li><%= @user.brand %></li>
-    <li><%= @user.description %></li>
-  </ol>
+  <h1><%= @user.brand %></h1>
+  <p>About their: <%= @user.description %></p>
+
 
   <h2>My products</h2>
   <% @user.products.each do |product| %>

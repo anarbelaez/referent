@@ -37,23 +37,22 @@ products = [
   </div>
 </div>
 
-<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item d-flex active">
-      <%= image_tag products.sample, height: 300 %>
-      <%= image_tag products.sample, height: 300 %>
-      <%= image_tag products.sample, height: 300 %>
-      <%# <img src="..." class="d-block w-100" alt="..."> %>
+<div id="carouselExampleControls" class="carousel carousel-dark slide carousel-fade" data-bs-ride="carousel">
+  <div class="carousel-inner text-center">
+    <div class="carousel-item active">
+      <%= image_tag products.sample, class: "mx-2", width: 400, height: 600 %>
+      <%= image_tag products.sample, class: "mx-2", width: 400, height: 600 %>
+      <%= image_tag products.sample, class: "mx-2", width: 400, height: 600 %>
     </div>
     <div class="carousel-item">
-      <%= image_tag products.sample, height: 300 %>
-      <%= image_tag products.sample, height: 300 %>
-      <%= image_tag products.sample, height: 300 %>
+      <%= image_tag products.sample, class: "mx-2", width: 400, height: 600 %>
+      <%= image_tag products.sample, class: "mx-2", width: 400, height: 600 %>
+      <%= image_tag products.sample, class: "mx-2", width: 400, height: 600 %>
     </div>
     <div class="carousel-item">
-      <%= image_tag products.sample, height: 300 %>
-      <%= image_tag products.sample, height: 300 %>
-      <%= image_tag products.sample, height: 300 %>
+      <%= image_tag products.sample, class: "mx-2", width: 400, height: 600 %>
+      <%= image_tag products.sample, class: "mx-2", width: 400, height: 600 %>
+      <%= image_tag products.sample, class: "mx-2", width: 400, height: 600 %>
     </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -66,52 +65,85 @@ products = [
   </button>
 </div>
 
-<div class="row mt-2 gy-2">
-  <% @products.first(23).each do |product| %>
-    <div class="col-6 col-md-3 my-3">
+<h2 class="text-center mt-5">Latest published products</h2>
+<div class="row mt-2 gy-2 border border-2">
+  <% @products.last(6).each do |product| %>
+    <div class="col-6 col-md-2 my-4">
       <div class="card border-0 rounded-0"
       style="height: 270px;
-      background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(<%= products.sample %>)"></div>
+      background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(<%= products.sample %>)">
+      </div>
     <%= link_to product.name, product_path(product), class: "link-dark text-decoration-none" %>
     <div class="d-flex justify-content-between align-items-center">
       <p class="m-0">$<%= product.price %></p>
     <%= link_to "I want it!", new_product_order_path(product), class: "btn btn-info p-0 px-1" %>
     </div>
     </div>
-
-
   <% end %>
-      <div class="col-6 col-md-3 my-3">
-      <div class="card border-0 rounded-0"
-      style="height: 270px;
-      background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80)"></div>
-    <%= link_to @products.last.name, product_path(@products.last), class: "link-dark text-decoration-none" %>
-    <div class="d-flex justify-content-between align-items-center">
-      <p class="m-0">$<%= @products.last.price %></p>
-    <%= link_to "I want it!", new_product_order_path(@products.last), class: "btn btn-info p-0 px-1" %>
+  </div>
+
+<div id="carouselExampleControls" class="carousel carousel-dark slide carousel-fade" data-bs-ride="carousel">
+  <div class="carousel-inner text-center mt-4">
+    <div class="carousel-item active">
+      <%= image_tag products.sample, class: "mx-2", width: 400, height: 450 %>
+      <%= image_tag products.sample, class: "mx-2", width: 400, height: 450 %>
+      <%= image_tag products.sample, class: "mx-2", width: 400, height: 450 %>
     </div>
+    <div class="carousel-item">
+      <%= image_tag products.sample, class: "mx-2", width: 400, height: 450 %>
+      <%= image_tag products.sample, class: "mx-2", width: 400, height: 450 %>
+      <%= image_tag products.sample, class: "mx-2", width: 400, height: 450 %>
     </div>
+    <div class="carousel-item">
+      <%= image_tag products.sample, class: "mx-2", width: 400, height: 450 %>
+      <%= image_tag products.sample, class: "mx-2", width: 400, height: 450 %>
+      <%= image_tag products.sample, class: "mx-2", width: 400, height: 450 %>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
 
 
-  <div class="col-12 mt-5 d-flex justify-content-center">
+
+  <div class="col-12 mt-2 d-flex justify-content-center">
     <%= link_to "Explore all products 🔍", products_path, class: "text-center text-decoration-none text-dark border-bottom fs-5" %>
+  </div>
+
+
+
+<h2 class="text-center my-5">About Referent</h2>
+
+<div class="container">
+  <div class="row">
+    <div class="col-6 text-center my-auto">
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+      Sapiente suscipit exercitationem minima facilis quia voluptatum aspernatur,
+      debitis similique eius expedita vel quibusdam error et esse quo obcaecati molestias ea ratione.</p>
+    </div>
+
+    <div class="col-6 text-center">
+        <%= image_tag products.sample, width: 600, height: 400 %>
+    </div>
   </div>
 </div>
 
 
-
-
-
-<div class="mt-5 border-bottom">
+<div class="mt-5 border-bottom text-center pb-3">
   <%= link_to "Referents", referents_path, class: "text-decoration-none fs-4 text-dark d-inline" %>
-  <i class="bi bi-chevron-right"></i>
 </div>
-<div class="row mt-2 g-3">
+<div class="row mt-2 g-1">
   <% num = 0 %>
   <% @referents.each do |referent| %>
     <div class="col-4 col-md-2">
 
-    <div class="card rounded-circle border-0"
+    <div class="card border-0 rounded-0"
      style="height: 150px;
      background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(<%= brands[num] %>)">
      <% num += 1 %>
@@ -120,6 +152,24 @@ products = [
 
     </div>
     </div>
+
+
+  <% end %>
+
+<% @referents.each do |referent| %>
+    <div class="col-4 col-md-2">
+
+    <div class="card border-0 rounded-0"
+     style="height: 150px;
+     background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(<%= brands[num] %>)">
+     <% num += 1 %>
+
+    <%= link_to referent.brand, user_path(referent), class: "link-light text-decoration-none" %>
+
+    </div>
+    </div>
+
+
   <% end %>
 
   <div class="col-12 mt-5 d-flex justify-content-center">
