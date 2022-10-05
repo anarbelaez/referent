@@ -6,7 +6,6 @@ class User < ApplicationRecord
 
   include PgSearch::Model
   multisearchable against: %i[brand description]
-  PgSearch::Multisearch.rebuild(User)
 
   has_many :products, dependent: :destroy
   has_many :orders, dependent: :destroy
