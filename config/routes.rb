@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   # Pages
   root to: "pages#home", as: :home
+  get "/search", to: "pages#search"
 
   # Users
   get "/referents", to: "users#index"
@@ -15,7 +16,7 @@ Rails.application.routes.draw do
   resources :products, shallow: true do
     resources :orders, except: [:index]
   end
-  
- # Orders
+
+  # Orders
   patch "orders/:order_id/mark", to: "orders#close_order"
-  end
+end

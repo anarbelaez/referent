@@ -4,6 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  include PgSearch::Model
+  multisearchable against: %i[brand description]
+
   has_many :products, dependent: :destroy
   has_many :orders, dependent: :destroy
   has_one_attached :photo

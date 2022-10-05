@@ -1,4 +1,7 @@
 class Product < ApplicationRecord
+  include PgSearch::Model
+  multisearchable against: %i[name description user]
+
   belongs_to :user
   has_many :orders
   has_many_attached :photos
@@ -19,11 +22,11 @@ class Product < ApplicationRecord
 
   enum :genre, { women: 0, men: 1, unisex: 2 }
 
-  scope :available, -> { where(status: true) }
+  scope :available, -> { where(status: true).order(created_at: :desc) }
   scope :sold, -> { where(status: false) }
 
   def brand
-    user.brand
+    user_id.brand
   end
 
   def available?
