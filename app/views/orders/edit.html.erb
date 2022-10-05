@@ -1,18 +1,20 @@
  <hr>
-  <div class="card-order">
+  <div class="card-order col-10">
     <span> <i class="fa-solid fa-cart-shopping"></i>    1 order will be edited</span>
   </div>
 
-  <div class="card-order">
+  <div class="card-order col-10">
+
+  <img width="500" src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" />
   <%= simple_form_for [@product, @order] do |f| %>
-    <%= f.input :delivery, collection: ["At seller's address", "receive at the buyer's address", "pick up at shipping office"], prompt: "Choose delivery" %>
-    <%= f.input :payment, collection: ["Cash", "Credit Card", "PSE"], prompt: "Choose" %>
+    <%= f.input :delivery, collection:  Order.deliveries.keys, prompt: "Choose delivery",  as: :radio_buttons, label: 'How do you want to receive the product?', error: 'Please select one option' %>
+    <%= f.input :payment, collection: Order.payments.keys, prompt: "Choose", as: :radio_buttons, label: 'What will be the payment method?', error: 'Please select one option'%>
     <%= f.submit %>
-    <% if @order.user.role %>
-    <%= f.input :status %>
-    <% end %>
+   <!-- <% if @order.user.role %> -->
+      <!--  <%= f.input :status, input_html: {value: false} %> -->
+   <!-- <% end %> -->
   <% end %>
 
-    <img width="400" src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" />
+
 
 </div>

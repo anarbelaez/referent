@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :set_product, only: %i[new create]
+  before_action :set_product, only: %i[new create change_status]
 
   def new
     @order = Order.new
@@ -48,6 +48,10 @@ class OrdersController < ApplicationController
 
   def order_params
     params.require(:order).permit(:product_id, :current_user, :payment, :delivery, :status)
+  end
+
+  def status_params
+    params.require(:order).permit(:status)
   end
 
   def set_product
