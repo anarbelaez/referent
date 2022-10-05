@@ -1,0 +1,63 @@
+<div class="row  mx-auto my-2 card-form col-sm-12 col-10">
+  <div class="col-6 d-flex justify-content-center">
+  <div class="col-6" id="for1">
+
+<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :first_name, required: true %>
+    <%= f.input :last_name, required: true %>
+
+    <%# Brand and description %>
+    <%= f.input :brand %>
+    <%= f.input :description, as: :text, :input_html => { rows: 5, cols: 10 }%>
+    <%= f.input :photo, as: :file %>
+
+    <%= f.input :email, required: true, autofocus: true %>
+
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+    <% end %>
+
+    <%= f.input :password,
+                hint: "Leave it blank if you don't want to change it",
+                required: false,
+                input_html: { autocomplete: "new-password" } %>
+    <%= f.input :password_confirmation,
+                required: false,
+                input_html: { autocomplete: "new-password" } %>
+    <%= f.input :current_password,
+                hint: "We need your current password to confirm your changes",
+                required: true,
+                input_html: { autocomplete: "current-password" } %>
+    <%= f.input :role,
+                hint: "We need your current role to confirm your changes",
+                required: true %>
+    <%= f.input :first_name, required: true,
+                input_html: {class:"border-0 border-bottom border-1 bg-light border-dark"} %>
+    <%= f.input :last_name, required: true,
+                input_html: {class:"border-0 border-bottom border-1 bg-light border-dark"} %>
+    <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, "Update", class: "btn btn-warning" %>
+  </div>
+<% end %>
+
+<div class="d-flex align-items-center mt-2">
+  <div>Unhappy?</div>
+  <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-link" %>
+</div>
+
+<%= link_to "Back", :back %>
+ </div>
+</div>
+ <div class="img-form-p col-6">
+    <div class="glassmorphism">
+
+    <h3>Life's too short to wear boring clothes!</h3>
+    <p>Find in <strong>Referent</strong> unique garments from the best designers</p>
+
+</div>
