@@ -1,5 +1,5 @@
 
-    <hr>git stat
+    <hr>
      <%= simple_form_for(@product) do |f| %>
         <%= f.input :name, input_html: {class:"border-0 border-bottom border-1 bg-light border-dark"} %>
         <%= f.input :description, input_html: {class:"border-0 border-bottom border-1 bg-light border-dark"} %>
@@ -12,7 +12,7 @@
                     input_html: {class:"border-0 border-bottom border-1 bg-light border-dark"} %>
         <%= f.input :genre, collection:  Product.genres.keys,prompt: "Choose Color", error: 'Please select one option',
                     input_html: {class:"border-0 border-bottom border-1 bg-light border-dark"} %>
-        <%= f.input :photogit stati¿us input_html: {class:"border-0 bg-ligth rounded-pill"} %>
+        <%= f.input :photo, input_html: {class:"border-0 bg-ligth rounded-pill"} %>
         <%= f.submit input_html: {class:"btn btn-dark col-12"} %>
       <% end %>
     </div>
