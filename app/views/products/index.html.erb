@@ -27,7 +27,10 @@ products = [
         <%= link_to product.name, product_path(product), class: "link-dark text-decoration-none" %>
         <div class="d-flex justify-content-between align-items-center">
           <p class="m-0">$<%= product.price %></p>
+
+        <% unless current_user.referent? %>
         <%= link_to "I want it!", new_product_order_path(product), class: "btn btn-info p-0 px-1" %>
+        <% end %>
         </div>
         <p> <%= product.brand %> </p>
     </div>

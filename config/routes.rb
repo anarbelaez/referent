@@ -5,8 +5,11 @@ Rails.application.routes.draw do
   root to: "pages#home", as: :home
   get "/search", to: "pages#search"
 
-  # Users
+  # Referents
   get "/referents", to: "users#index"
+  get "/referents/new", to: "users#new_referent", as: :new_referent
+  patch "/referents/:id", to: "users#create_referent", as: :create_referent
+
   resources :users, only: [:show] do
     # get "/products", to: "user#products"
     get :details
@@ -18,5 +21,5 @@ Rails.application.routes.draw do
   end
 
   # Orders
-  patch "orders/:order_id/mark", to: "orders#close_order"
+  put "orders/:order_id/mark", to: "orders#close_order"
 end
