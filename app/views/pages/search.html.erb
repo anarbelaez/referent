@@ -7,29 +7,11 @@
   <%= submit_tag "Search", class: "btn btn-primary" %>
 <% end %>
 
-<% unless @results.nil? %>
-  <div class="row">
-    <h2 class="bg-info">Results</h2>
-    <% @results.each do |result| %>
-      <%= result.searchable.name %>
-    <% end %>
-  </div>
-<% end %>
-
 <% if @products %>
 <div class="row">
   <h2 class="bg-info">Products</h2>
   <% @products.each do |product| %>
     <%= product.name %>
-  <% end %>
-</div>
-<% end %>
-
-<% if @referents %>
-<div class="row">
-  <h2 class="bg-info">Referents</h2>
-  <% @referents.each do |referent| %>
-    <%= referent.brand %>
   <% end %>
 </div>
 <% end %>
