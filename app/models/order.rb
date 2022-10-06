@@ -5,7 +5,7 @@ class Order < ApplicationRecord
   validates :status, :payment, :delivery, :user, :product, presence: true
   validates :status, inclusion: [true, false] # True - Open, False - Closed
 
-  enum :payment, { 'cash': 0, 'debit card': 1, 'credit card': 2 }, scopes: false
+  enum :payment, { 'Cash': 0, 'Debit Card': 1, 'Credit Card': 2 }, scopes: false
   enum :delivery, { 'home delivery': 0, 'delivery point': 1 }, scopes: false
 
   scope :open, -> { where(status: true) } # Puedo usar Order.open
