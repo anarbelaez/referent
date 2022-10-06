@@ -26,7 +26,7 @@ class Product < ApplicationRecord
   scope :sold, -> { where(status: false) }
 
   def brand
-    user_id.brand
+    user.brand
   end
 
   def available?
