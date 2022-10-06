@@ -2,11 +2,13 @@ class OrdersController < ApplicationController
   before_action :set_product, only: %i[new create change_status]
 
   def new
+    redirect_to home_path if current_user.referent?
     @order = Order.new
   end
 
   def show
     @order = Order.find(params[:id])
+    redirect_to home_path unless current_user == @order.user
   end
 
   def create

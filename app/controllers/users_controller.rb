@@ -5,6 +5,17 @@ class UsersController < ApplicationController
     @referents = User.referent
   end
 
+  def new_referent
+    @user = current_user
+  end
+
+  def create_referent
+    user = User.find(params[:id])
+    user.update_attribute(:role, 1)
+    user.update(user_params)
+    redirect_to home_path
+  end
+
   def show
     @user = User.find(params[:id])
   end
@@ -16,5 +27,11 @@ class UsersController < ApplicationController
     else
       redirect_to home_path
     end
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:brand, :description)
   end
 end
