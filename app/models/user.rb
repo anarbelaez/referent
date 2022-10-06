@@ -15,7 +15,7 @@ class User < ApplicationRecord
 
   # El valor por defecto del role es 2: fashion_lover
   validates :role, presence: true
-  enum :role, { admin: 0, referent: 1, fashion_lover: 2 }
+  enum :role, { 'admin': 0, 'referent': 1, 'fashion lover': 2 }
 
   # validates :brand, presence: true # , on: :update
   validates :description, length: { maximum: 200 }
