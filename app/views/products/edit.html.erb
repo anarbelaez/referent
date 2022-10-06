@@ -1,11 +1,13 @@
-<h1 class="my-5">Edit Product</h1>
-  <%= simple_form_for(@product) do |f| %>
-    <%= f.input :name %>
-    <%= f.input :description %>
-    <%= f.input :price %>
-    <%= f.input :size %>
-    <%= f.input :color %>
-    <%= f.input :category %>
-    <%= f.input :genre %>
-    <%= f.submit %>
-  <% end %>
+
+  <div class="row mx-auto my-3 card-form col-10">
+
+  <div class="img-form-p col-5">
+    <div class="glassmorphism">
+      <h3>Let everyone know your creations!</h3>
+      <p>Post in <strong>Referent</strong> to all fashion lovers</p>
+    </div>
+  </div>
+
+ <div class="col-7 mt-5 d-flex justify-content-center">
+
+<%= render 'products/form_product' %>

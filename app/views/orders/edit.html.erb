@@ -10,11 +10,5 @@
     <%= f.input :delivery, collection:  Order.deliveries.keys, prompt: "Choose delivery",  as: :radio_buttons, label: 'How do you want to receive the product?', error: 'Please select one option' %>
     <%= f.input :payment, collection: Order.payments.keys, prompt: "Choose", as: :radio_buttons, label: 'What will be the payment method?', error: 'Please select one option'%>
     <%= f.submit %>
-   <!-- <% if @order.user.role %> -->
-      <!--  <%= f.input :status, input_html: {value: false} %> -->
-   <!-- <% end %> -->
   <% end %>
-
-
-
 </div>
