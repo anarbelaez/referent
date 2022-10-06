@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   # Referents
   get "/referents", to: "users#index"
   get "/referents/new", to: "users#new_referent", as: :new_referent
-  patch "/referents", to: "users#create_referent"
+  patch "/referents/:id", to: "users#create_referent", as: :create_referent
 
   resources :users, only: [:show] do
     # get "/products", to: "user#products"
@@ -21,5 +21,5 @@ Rails.application.routes.draw do
   end
 
   # Orders
-  patch "orders/:order_id/mark", to: "orders#close_order"
+  put "orders/:order_id/mark", to: "orders#close_order"
 end
