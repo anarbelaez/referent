@@ -3,15 +3,7 @@
   </div>
  <div class="card-order mx-auto col-10">
 
-    <% if @product.photos.present? %>
-    <p>aqui se ve foto cloudinary</p>
-    <% @product.photos.each do |photo| %>
-      <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
-    <% end %>
-    <% else %>
-    <%= image_tag "https://previews.123rf.com/images/urfandadashov/urfandadashov1805/urfandadashov180500070/100957966-photo-not-available-icon-isolated-on-white-background-vector-illustration.jpg", height: 400, width: 400 %>
-    <% end %>
-
+   <%= render 'orders/image_product' %>
 
     <%= simple_form_for [@product, @order] do |f| %>
       <%= f.input :delivery, collection:  Order.deliveries.keys, prompt: "Choose delivery",  as: :radio_buttons, label: 'How do you want to receive the product?', error: 'Please select one option' %>
@@ -21,38 +13,29 @@
       <button type="button" class="btn btn-dark col-12" data-bs-toggle="modal" data-bs-target="#exampleModal">
        Create Order
       </button>
-      <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel"><span> <i class="fa-solid fa-cart-shopping"></i>    1 order will be created</span></h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"><span> <i class="fa-solid fa-cart-shopping"></i>    1 order will be created</span></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="card-product-o">
+          <%= render 'orders/image_product' %>
+        <div class="card-product-infos-o">
+          <h2> <%= @product.name %>  </h2>
+          <p><strong> $ <%= @product.price %> </p></strong>
+        </div>
       </div>
-      <div class="modal-body">
-         <div class="card-product-o">
-    <% if @product.photos.present? %>
-    <p>aqui se ve foto cloudinary</p>
-    <% @product.photos.each do |photo| %>
-      <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
-    <% end %>
-    <% else %>
-    <%= image_tag "https://previews.123rf.com/images/urfandadashov/urfandadashov1805/urfandadashov180500070/100957966-photo-not-available-icon-isolated-on-white-background-vector-illustration.jpg", height: 400, width: 400 %>
-    <% end %>
-
-      <div class="card-product-infos-o">
-        <h2> <%= @product.name %>  </h2>
-        <p><strong> $ <%= @product.price %> </p></strong>
+    </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Back</button>
+          <%= f.submit %>
+        </div>
       </div>
     </div>
   </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Back</button>
-         <%= f.submit %>
-      </div>
-    </div>
-  </div>
-</div>
-    <% end %>
- <!-- <%= @product.photos %> -->
+  <% end %>
 </div>

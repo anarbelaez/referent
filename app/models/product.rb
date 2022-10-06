@@ -4,7 +4,7 @@ class Product < ApplicationRecord
 
   belongs_to :user
   has_many :orders
-  has_many_attached :photos
+  has_one_attached :photo
 
   validates :name, :price, :size, :category, :genre, :user, :status, presence: true
   validates :name, length: { minimum: 5 }
@@ -26,7 +26,7 @@ class Product < ApplicationRecord
   scope :sold, -> { where(status: false) }
 
   def brand
-    user_id.brand
+    user.brand
   end
 
   def available?

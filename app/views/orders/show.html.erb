@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-8">
+  <div class="col sm-12 col-8">
     <div class="card-order">
       <h2 class="d-inline p-2">Order Details</h2>
         <% if @order.status %>
@@ -24,16 +24,13 @@
   <hr>
 
   <div class="card-product-o">
- <% if @order.product.photos.present? %>
-    <p>aqui se ve foto cloudinary</p>
-    <% @product.photos.each do |photo| %>
-      <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
-    <% end %>
+    <% if @order.product.photo.present? %>
+      <%= cl_image_tag @order.product.photo.key, height: 300, width: 400, crop: :fill %>
     <% else %>
     <%= image_tag "https://previews.123rf.com/images/urfandadashov/urfandadashov1805/urfandadashov180500070/100957966-photo-not-available-icon-isolated-on-white-background-vector-illustration.jpg", height: 400, width: 400 %>
     <% end %>
 
-       <div class="card-product-infos-o">
+    <div class="card-product-infos-o">
       <h3> <%= @order.product.name %>  </h3>
       <h2> <%= @order.product.description %>  </h2>
       <p><strong>     $ <%= price = @order.product.price %> </p></strong>
@@ -66,9 +63,8 @@
               <%= f.input :delivery, collection:  Order.deliveries.keys, prompt: "Choose delivery",  as: :radio_buttons, label: 'How do you want to receive the product?', error: 'Please select one option' %>
               <%= f.input :payment, collection: Order.payments.keys, prompt: "Choose Payment Method", as: :radio_buttons, label: 'What will be the payment method?', error: 'Please select one option'%>
 
-              <% if @order.user.role %>
               <%= f.input :status %>
-              <% end %>
+
             </div>
            <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -83,7 +79,7 @@
   </div>
 
   <div class="col-4">
-      <% if referent_product?(@order.product) %>
+    <% if referent_product?(@order.product) %>
       <% unless @order.status %>
       <button type='button' class="btn btn-info col-12 mb-3 rounded-pill" disabled> CLOSED ORDER</button>
       <% else %>
