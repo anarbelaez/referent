@@ -1,4 +1,4 @@
-<div class="container d-flex">
+<div class="container p-5 mt-5 bg-page rounded-4">
 <div class="row">
   <div class="col sm-12 col-8">
     <div class="card-order">
@@ -21,6 +21,16 @@
       <p> <%= image_tag "https://st3.depositphotos.com/6672868/13701/v/600/depositphotos_137014128-stock-illustration-user-profile-icon.jpg", class: "avatar dropdown-toggle", id: "navbarDropdown", 'aria-haspopup': true, 'aria-expanded': false %>
       Your Referent:  <strong><%= @order.product.brand %></strong></p>
     </div>
+
+    <div class="card-order">
+      <p> <%= image_tag "https://st3.depositphotos.com/6672868/13701/v/600/depositphotos_137014128-stock-illustration-user-profile-icon.jpg", class: "avatar dropdown-toggle", id: "navbarDropdown", 'aria-haspopup': true, 'aria-expanded': false %>
+      Shopper:  <strong><%= @order.user.first_name%> <%= @order.user.last_name%></strong></p>
+    </div>
+
+    <div class="card-order">
+      <%= link_to "Add review", user_path(@order.product.user) , class: "text-light btn btn-dark m-1" %>
+    </div>
+
 
   <hr>
 
@@ -66,6 +76,7 @@
         <p><%= @order.created_at.strftime('%A, %d de %B de %Y') %></p>
       </div>
     </div>
+
 
     <div class="card-order justify-content-center text-center">
       <div>
