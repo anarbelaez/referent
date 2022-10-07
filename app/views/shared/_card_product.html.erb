@@ -32,7 +32,7 @@
         <% end %>
       </div>
       <% if referent_product?(product) && !product.orders.empty? %>
-        <%= link_to "View order details", order_path(product.orders.first.id) %>
+        <%= link_to "View order details", order_path(product.orders.first.id), class: "text-light btn btn-dark m-1" %>
       <% end %>
     </div>
   </div>
