@@ -69,8 +69,6 @@
 
       <% unless referent_user? %>
        <%= link_to "Lo quiero!", new_product_order_path(@product), class: "btn btn-info col-6" %>
-      <% else %>
-        <p class="text-danger">You need to log in with a Customer account!</p>
       <% end %>
      </div>
    </section>
