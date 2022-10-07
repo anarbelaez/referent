@@ -13,7 +13,9 @@
         <%= f.input :genre, collection:  Product.genres.keys,prompt: "Choose Color", error: 'Please select one option',
                     input_html: {class:"border-0 border-bottom border-1 bg-light border-dark"} %>
         <%= f.input :photo, input_html: {class:"border-0 bg-ligth rounded-pill"} %>
-        <%= f.submit input_html: {class:"btn btn-dark col-12"} %>
+        <div class="d-flex justify-content-center">
+          <%= f.submit "Crear", class:"btn btn-dark col-8"%>
+        </div>
       <% end %>
     </div>
 </div>
