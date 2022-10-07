@@ -26,7 +26,7 @@ products = [
 
 <h2 class="text-center mb-3 pt-5 font-t">Latest published products</h2>
 <div class="row mt-2 gy-2 bg-page p-4">
-  <% @products.last(6).each do |product| %>
+  <% @products.each do |product| %>
   <div class="col-6 col-md-2 my-4">
     <%= render 'shared/card_product', product: product %>
   </div>
