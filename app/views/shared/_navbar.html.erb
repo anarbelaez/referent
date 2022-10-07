@@ -31,14 +31,14 @@
 
             <%= link_to user_path(current_user), class: "nav-link active text-decoration-none" do %>
               <i class="bi bi-person-fill"></i>
-              <span class="mx-2">My profile</span>
+              <span class="mx-2">Ver mi perfil</span>
             <% end %>
 
 
             <% if current_user.referent? %>
               <%= link_to new_product_path, class: "nav-link text-decoration-none" do %>
                 <i class="bi bi-bag-heart"></i>
-                <span class="mx-2">New product</span>
+                <span class="mx-2">Agregar producto</span>
               <% end %>
             <% end %>
 
