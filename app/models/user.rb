@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :products, dependent: :destroy
   has_many :orders, dependent: :destroy
   has_one_attached :photo
+  has_many :reviews
 
   validates :first_name, :last_name, presence: true, length: { minimum: 2 }
 
