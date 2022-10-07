@@ -29,6 +29,7 @@ products = [
       </div>
       <div class="col-6 mt-3">
         <%= image_tag brands.sample%>
+        <%# <%= cl_image_tag @user.photo.key, height: 300, width: 400, crop: :fill %>
       </div>
       <div class="col-6 my-auto text-start">
         <h2 class="border-bottom mb-3 font-t">About <%= @user.brand %>: </h2>
@@ -45,7 +46,6 @@ products = [
         <div class="col-6 col-md-3 my-4">
           <%= render 'shared/card_product', product: product %>
         </div>
-        <%= cl_image_tag @user.photo.key, height: 300, width: 400, crop: :fill %>
       <% end %>
     </div>
   </div>
