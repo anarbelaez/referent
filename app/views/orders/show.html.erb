@@ -18,7 +18,7 @@
 
     <div class="card-order">
       <p> <%= image_tag "https://st3.depositphotos.com/6672868/13701/v/600/depositphotos_137014128-stock-illustration-user-profile-icon.jpg", class: "avatar dropdown-toggle", id: "navbarDropdown", 'aria-haspopup': true, 'aria-expanded': false %>
-      Your Referent:  <strong><%= @order.user.brand %></strong></p>
+      Your Referent:  <strong><%= @order.product.brand %></strong></p>
     </div>
 
   <hr>
@@ -39,43 +39,12 @@
 
     <hr>
 
-    <% if @order.status %>
-      <%= link_to "Delete Order", order_path(@order), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"btn btn-warning" %>
-      <% else %>
-      <%= link_to "Delete Order", order_path(@order), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"btn btn-warning disabled" %>
-      <% end %>
-
-
-    <% if @order.status %>
-         <!-- Button trigger modal -->
-      <button type="button" class="btn bg-secondary btn-gradient" data-bs-toggle="modal" data-bs-target="#exampleModal"> Edit Order </button>
-
-        <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">   <span> <i class="fa-solid fa-cart-shopping"></i>    1 order will be edited</span> </h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-            <div class="modal-body">
-              <%= simple_form_for [@product, @order] do |f| %>
-              <%= f.input :delivery, collection:  Order.deliveries.keys, prompt: "Choose delivery",  as: :radio_buttons, label: 'How do you want to receive the product?', error: 'Please select one option' %>
-              <%= f.input :payment, collection: Order.payments.keys, prompt: "Choose Payment Method", as: :radio_buttons, label: 'What will be the payment method?', error: 'Please select one option'%>
-
-              <%= f.input :status %>
-
-            </div>
-           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <%= f.submit %>
-               <% end %>
-          </div>
-        </div>
-      </div>
-    </div>
+    <% if referent_user? %>
+      <%= link_to "Back", user_path(current_user), class:"btn btn-dark" %>
+    <% else %>
+      <%= link_to "Back to buy", products_path, class:"btn btn-dark" %>
     <% end %>
-    <%= link_to "BACK TO BUY", products_path, class:"btn btn-dark" %>
+
   </div>
 
   <div class="col-4">

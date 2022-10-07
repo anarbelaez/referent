@@ -14,4 +14,8 @@ class Order < ApplicationRecord
   def mark_as_closed!
     update_attribute(:status, false)
   end
+
+  def closed?
+    status == false
+  end
 end

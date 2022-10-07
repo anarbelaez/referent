@@ -26,7 +26,6 @@ products = [
         <% unless current_user.referent? %>
           <%= link_to "I want it!", new_product_order_path(product), class: "bottom-orange font-pb" %>
         <% end %>
-        <p> <%= product.brand %> </p>
       </div>
     </div>
   </div>

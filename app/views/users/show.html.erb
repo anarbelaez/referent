@@ -29,6 +29,7 @@ products = [
       </div>
       <div class="col-6 mt-3">
         <%= image_tag brands.sample%>
+        <%# <%= cl_image_tag @user.photo.key, height: 300, width: 400, crop: :fill %>
       </div>
       <div class="col-6 my-auto text-start">
         <h2 class="border-bottom mb-3 font-t">About <%= @user.brand %>: </h2>
@@ -37,7 +38,7 @@ products = [
     </div>
   </div>
 
-  <h2 class="text-center mb-3 font-t">Products of the Referent</h2>
+  <h2 class="text-center mb-3 font-t">All my products</h2>
   <div class="bg-page my-5 py-3">
     <div class="container">
       <div class="row mt-2 gy-2">
@@ -45,13 +46,30 @@ products = [
         <div class="col-6 col-md-3 my-4">
           <%= render 'shared/card_product', product: product %>
         </div>
-        <%= cl_image_tag @user.photo.key, height: 300, width: 400, crop: :fill %>
       <% end %>
     </div>
   </div>
   </div>
 
-<% elsif @user == current_user %>
+  <div class = "container" class="col-md-6">
+      <% if fashion_lover? && can_review?(@user) %>
+      <%= link_to "New Review", new_user_review_path(@user), class: "btn btn-lg btn-info"%>
+      <% end %>
+      <p class="card-text"> <h5>All Reviews:</h5> <% @user.reviews.each do |review| %>
+      <p class="card-text"><% review.rating.times do %> <i class="fa-solid fa-star"></i><% end %></p>
+      <p class="list-group-item"><%= review.content %></p>
+
+      <% if fashion_lover? && can_review?(@user) %>
+      <small><p><%= link_to "Delete",
+        review_path(review),
+        data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-sm btn-info"
+      %></p></small></p>
+      </p>
+      <% end %>
+    <% end %>
+  </div>
+
+<% elsif @user.fashion_lover? %>
 
 <div class="container">
     <div class="row mb-5">
@@ -76,8 +94,9 @@ products = [
   </div>
 
 <% else %>
-  <p>Oh oh!</p>
+  <p class="text-center text-danger font-t">Oh oh! You cannot see this user profile!</p>
 <% end %>
+<<<<<<< HEAD
 
 
 <div class = "container" class="col-md-6">
@@ -93,3 +112,5 @@ products = [
 </p>
   <% end %>
 </div>
+=======
+>>>>>>> 50992ad6546b5c3aef4948e5609f1381715fb35c

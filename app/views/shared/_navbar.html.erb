@@ -21,7 +21,6 @@
               <% if user_signed_in? %>
                 <%= link_to "My profile", user_path(current_user), class: "dropdown-item" %>
 
-                <%= link_to "Details", user_details_path(current_user) , class: "dropdown-item" %>
 
                 <% if current_user.referent? %>
                   <%= link_to "New product", new_product_path, class: "dropdown-item" %>
