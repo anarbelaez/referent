@@ -14,21 +14,26 @@
 %>
 
 
-  <div class="bg-color-beige shadow-sm">
-    <%= image_tag products.sample, class: "card-img-top", height: 270 %>
+  <div class="shadow-sm">
+    <div class="card"
+     style="height: 180px;
+     background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url( <%= image(product) %> )">
+    </div>
     <div class="">
-    <%= link_to product.name, product_path(product), class: "link-dark text-decoration-none ms-1 mt-1 font-pb" %>
+    <div class="my-2 fs-6">
+      <%= link_to product.name.first(15) + "...", product_path(product), class: "text-dark text-decoration-none p-2 " %>
+    </div>
       <div class="d-flex justify-content-between align-items-center py-2 px-1">
         <p class="m-0 ms-1 font-pb">$<%= product.price %></p>
 
         <% if referent_product?(product) %>
           <% unless product.available? %>
-            <p class="m-0 ms-1 font-pb bg-warning px-2">Ordered</p>
+            <p class="m-0 ms-1 font-pb bg-primary px-2">Ordered</p>
           <% end %>
         <% end %>
 
         <% unless referent_user? %>
-          <%= link_to "I want it!", new_product_order_path(product), class: "bottom-orange font-pb" %>
+          <%= link_to "I want it!", new_product_order_path(product), class: "bg-info text-decoration-none text-dark px-2 py-1 rounded" %>
         <% end %>
       </div>
       <% if referent_product?(product) && !product.orders.empty? %>

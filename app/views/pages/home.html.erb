@@ -23,65 +23,43 @@ products = [
 
 %>
 <%# END TEMPORAL %>
-
-<h2 class="text-center mb-3 pt-5 font-t">Latest published products</h2>
-<div class="row mt-2 gy-2 bg-page p-4">
-  <% @products.first(6).each do |product| %>
-  <div class="col-6 col-md-2 my-4">
-    <%= render 'shared/card_product', product: product %>
-  </div>
-  <% end %>
-</div>
-
-
-<div class="row mt-5">
-  <div class="col-3 px-2">
-    <%= image_tag products.sample, class: "col-12", height: 600 %>
-    <p class="font-t text-center border border-2 border-dark mt-3">Spring</p>
+<div class="container mt-5">
+  <div class="row">
+    <h2 class="fs-5 border-bottom border-success pb-2 text-success">
+      Ultimos productos
+    </h2>
   </div>
 
-  <div class="col-3 px-2">
-    <%= image_tag products.sample, class: "col-12", height: 600 %>
-    <p class="font-t text-center border border-2 border-dark mt-3">Summer</p>
+  <div class="row gy-2 pt-1">
+    <% @products.first(12).each do |product| %>
+    <div class="col-6 col-md-2 my-4">
+      <%= render 'shared/card_product', product: product %>
+    </div>
+    <% end %>
+  </div>
+  <div class="row">
+    <h2 class="fs-6">
+      <%= link_to products_path, class: "text-decoration-none text-dark" do %>
+      Ver todos los productos <i class="bi bi-chevron-right"></i>
+      <% end %>
+    </h2>
   </div>
 
-  <div class="col-3 px-2">
-    <%= image_tag products.sample, class: "col-12", height: 600 %>
-    <p class="font-t text-center border border-2 border-dark mt-3">Fall</p>
-  </div>
-
-  <div class="col-3 px-2">
-    <%= image_tag products.sample, class: "col-12", height: 600 %>
-    <p class="font-t text-center border border-2 border-dark mt-3">Winter</p>
-  </div>
-</div>
-
-
-
-
-
-  <div class="col-12 mt-2 d-flex justify-content-center">
-    <p class="font-p"><%= link_to "Explore all products 🔍", products_path %></p>
-  </div>
-
-
-
-<h2 class="text-center mt-5 mb-3 font-t">About Referent</h2>
-<div class="bg-page py-5">
-<div class="container">
-  <div class="row bg-color-beige py-5 rounded-4">
-    <div class="col-6 text-center my-auto font-p">
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-      Sapiente suscipit exercitationem minima facilis quia voluptatum aspernatur,
-      debitis similique eius expedita vel quibusdam error et esse quo obcaecati molestias ea ratione.</p>
+  <div class="row mt-5 py-5 border border-warning">
+    <div class="col-5 text-center my-auto">
+      <p>En <strong class="text-danger">Referent</strong> puedes encontrar productos de marcas locales emergentes. Cuando compras local ayudas al <strong>ambiente</strong>. Crea una cuenta ahora!</p>
+      <%= link_to "Quiero ser un fashion lover", new_user_registration_path, class: "text-decoration-none bg-danger text-light p-2 rounded" %>
     </div>
 
-    <div class="col-6 text-center">
-        <%= image_tag products.sample, height: 400 %>
+    <div class="col-7 text-center">
+        <div class="col-12" style="background-size: cover; background-position: center; background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)), url(<%= "https://images.unsplash.com/photo-1578632292335-df3abbb0d586?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80" %>); height: 500px">
+
+        </div>
     </div>
   </div>
 </div>
-</div>
+
+
 
 <div class="container">
 
@@ -90,7 +68,7 @@ products = [
 </div>
 <div class="row mt-2 g-1">
   <% num = 0 %>
-  <% @referents.each do |referent| %>
+  <% @referents.last(6).each do |referent| %>
     <div class="col-4 col-md-2">
 
     <div class="card border-0 rounded-0"
@@ -105,32 +83,8 @@ products = [
 
 
   <% end %>
-
-<% @referents.each do |referent| %>
-    <div class="col-4 col-md-2">
-
-    <div class="card border-0 rounded-0"
-     style="height: 200px;
-     background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(<%= brands[num] %>)">
-     <% num += 1 %>
-
-    <%= link_to referent.brand, user_path(referent), class: "link-light text-decoration-none" %>
-
-    </div>
-    </div>
-
-
-  <% end %>
-</div>
 
   <div class="col-12 mt-5 d-flex justify-content-center">
-   <p class="font-p"><%= link_to "See more Referents 🔍", referents_path %></p>
-  </div>
-</div>
-
-
-<div class="row mt-4 py-5 bg-page ">
-  <div class="col-12">
-    <p class="fw-bold text-center pt-3"> Made with 🧡 by Katapi </p>
+   <p class="font-p"><%= link_to "See more Referents", referents_path %></p>
   </div>
 </div>
