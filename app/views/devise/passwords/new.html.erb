@@ -1,4 +1,10 @@
-<h2>Forgot your password?</h2>
+<div class="row  mx-auto my-2 card-form col-sm-12 col-10">
+  <div class="col-sm-12 col-lg-6 mt-5 d-flex justify-content-center">
+  <div class="col-10" id="for1">
+
+  <h3>Forgot your password?</h3>
+  <hr>
+  <p><small>Please enter your mail</small></p>
 
 <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
   <%= f.error_notification %>
@@ -7,12 +13,22 @@
     <%= f.input :email,
                 required: true,
                 autofocus: true,
-                input_html: { autocomplete: "email" } %>
+                input_html: { autocomplete: "email" },
+                input_html: { autocomplete: "email" }, input_html: {class:"border-0 border-bottom border-1 bg-light border-dark"} %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Send me reset password instructions" %>
+    <%= f.button :submit, "Send me reset password instructions", class: "btn btn-dark col-12 mb-3" %>
   </div>
 <% end %>
-
+<hr>
 <%= render "devise/shared/links" %>
+ </div>
+</div>
+ <div class="img-form1 col-sm-12 col-lg-6">
+    <div class="glassmorphism">
+
+    <h3>Life's too short to wear boring clothes!</h3>
+    <p>Find in <strong>Referent</strong> unique garments from the best designers</p>
+
+</div>

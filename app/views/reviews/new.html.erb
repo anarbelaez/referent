@@ -1,0 +1,8 @@
+<h1>New review</h1>
+<%= simple_form_for [@user, @review] do |f| %>
+<div class="field">
+   <%= f.rich_text_area :content, as: :file %>
+  </div>
+  <%= f.input :rating, collection: (1..5).to_a, as: :radio_buttons, input_html: {class:"d-inline"}  %>
+  <%= f.submit "Submit review", class: "btn btn-primary" %>
+<% end %>

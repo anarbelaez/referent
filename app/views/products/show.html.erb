@@ -1,15 +1,26 @@
+<<<<<<< HEAD
 <div class="container">
 
 <div class="row my-5">
+=======
+<div class="row mx-auto my-5">
+>>>>>>> 800980e07c04709fae823049f56fdec880f6e3d1
   <div class="col-12 d-flex">
-    <%= image_tag "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80", height: 500, width: 400 %>
-    <%# Si estoy logueado y soy un usuario referent puedo ver estas opciones %>
+<div class="card-category">
+<% if @product.photo.attached? %>
+  <%= cl_image_tag @product.photo.key, height: 300, width: 400, crop: :fill %>
+<% else %>
+<h1>articulo sin foto</h1>
+<%= image_tag "https://previews.123rf.com/images/urfandadashov/urfandadashov1805/urfandadashov180500070/100957966-photo-not-available-icon-isolated-on-white-background-vector-illustration.jpg", height: 400, width: 400 %>
+<% end %>
+
+</div>
 
     <div class="info ms-5">
       <div class="row">
         <div class="col-12">
           <h1 class="border-bottom"><%= @product.name %></h1>
-          <p class="brand"> <%= @product.user.brand %> </p>
+          <p class="brand"> <%= @product.brand %> </p>
           <p class="border-bottom"> <%= @product.description %> </p>
         </div>
       </div>
@@ -25,12 +36,16 @@
         <div class="col-6">
           <p>Price: <%= @product.price %> </p>
 
-          <% unless user_signed_in? && current_user.referent? %>
+          <% unless referent_user? %>
             <%= link_to "I want it!", new_product_order_path(@product), class: "btn btn-info col-12" %>
+          <% else %>
+            <p class="text-danger">You need to log in with a Customer account!</p>
           <% end %>
+
         </div>
       </div>
-      <% if user_signed_in? && current_user.id.to_i == @product.user_id %>
+
+      <% if referent_product?(@product) %>
 
         <%= link_to edit_product_path do %>
           <i class="fa-solid fa-pen-to-square"></i>
@@ -44,5 +59,14 @@
       <% end %>
     </div>
   </div>
-</div>
-</div>
+  <div class="col-3 my-4">
+    <%= link_to "Home", home_path, class: "btn btn-info" %>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#productModal">
+      Edit Product
+    </button>
+
+<!-- Modal -->
+    <%= render 'products/modal_product' %>
+  </div>
+  </div>

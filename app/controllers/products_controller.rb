@@ -4,21 +4,21 @@ class ProductsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
-    @products = Product.all
+    @products = Product.available
   end
 
   def show
   end
 
   def new
-    redirect_to home_path, notice: "You aren't a Referent!" unless current_user.referent?
+    redirect_to home_path unless current_user.referent?
     @product = Product.new
   end
 
   def create
     @product = Product.new(product_params)
     @product.user = current_user
-    @product.status = false
+    # @product.status = false
     @product.save
     if @product.save
       redirect_to product_path(@product)
@@ -28,7 +28,7 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    redirect_to user_path(current_user), notice: "Hey, hey hey" unless current_user.id.to_i == @product.user_id
+    redirect_to user_path(current_user) unless current_user == @product.user
   end
 
   def update
@@ -44,7 +44,7 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:name, :description, :price, :user_id, :size, :color, :category, :genre, photos: [])
+    params.require(:product).permit(:name, :description, :price, :user_id, :size, :color, :category, :genre, :photo)
   end
 
   def set_product

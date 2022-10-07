@@ -1,12 +1,8 @@
-<h1 class="my-5">New Product</h1>
-  <%= simple_form_for(@product) do |f| %>
-    <%= f.input :name %>
-    <%= f.input :description %>
-    <%= f.input :price %>
-    <%= f.input :size %>
-    <%= f.input :color %>
-    <%= f.input :category %>
-    <%= f.input :genre %>
-    <%= f.input :photos, as: :file, input_html: { multiple: true } %>
-    <%= f.submit %>
-  <% end %>
+ <div class="row mx-auto my-3 card-form col-8">
+  <div class="col-7 mt-5 d-flex justify-content-center">
+     <div class="mx-auto" id="for1">
+       <h3>Create a New Product</h3>
+         <%= render 'products/form_product' %>
+    </div>
+  </div>
+</div>

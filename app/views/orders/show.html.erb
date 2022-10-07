@@ -1,67 +1,117 @@
 <div class="row">
-  <hr>
+  <div class="col sm-12 col-8">
+    <div class="card-order">
+      <h2 class="d-inline p-2">Order Details</h2>
+        <% if @order.status %>
+      <span class="badge bg-success"> <%= "ORDER OPEN" %> </span>
+      <% else %>
+      <span class="badge bg-danger"><%= "ORDER COMPLETED" %> </span>
+      <% end %>
 
-  <div class="col-8">
-
+    </div>
 
     <div class="card-order">
-     <p>Payment method  <strong><%= @order.payment %></strong></p>
+      <p>
+      <%  @order.payment %> <i class="fa-regular fa-credit-card"></i> Your Payment Method:
+      <strong><%= @order.payment %></strong></p>
     </div>
 
-
-
-    <div class="card-product-o">
-      <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" />
-      <div class="card-product-infos-o">
-        <h2> <%= @order.product.name %>  </h2>
-        <p> <%= @order.product.description %> </p>
-        <p><strong>     $ <%= price = @order.product.price %> </p></strong>
-      </div>
+    <div class="card-order">
+      <p> <%= image_tag "https://st3.depositphotos.com/6672868/13701/v/600/depositphotos_137014128-stock-illustration-user-profile-icon.jpg", class: "avatar dropdown-toggle", id: "navbarDropdown", 'aria-haspopup': true, 'aria-expanded': false %>
+      Your Referent:  <strong><%= @order.user.brand %></strong></p>
     </div>
+
+  <hr>
+
+  <div class="card-product-o">
+    <% if @order.product.photo.present? %>
+      <%= cl_image_tag @order.product.photo.key, height: 300, width: 400, crop: :fill %>
+    <% else %>
+    <%= image_tag "https://previews.123rf.com/images/urfandadashov/urfandadashov1805/urfandadashov180500070/100957966-photo-not-available-icon-isolated-on-white-background-vector-illustration.jpg", height: 400, width: 400 %>
+    <% end %>
+
+    <div class="card-product-infos-o">
+      <h3> <%= @order.product.name %>  </h3>
+      <h2> <%= @order.product.description %>  </h2>
+      <p><strong>     $ <%= price = @order.product.price %> </p></strong>
+    </div>
+  </div>
 
     <hr>
 
     <% if @order.status %>
-      <a class="btn btn-ghost" <%= link_to "Delete Order", order_path(@order), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:'btn-flat'%>
-    </a>
+      <%= link_to "Delete Order", order_path(@order), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"btn btn-warning" %>
+      <% else %>
+      <%= link_to "Delete Order", order_path(@order), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"btn btn-warning disabled" %>
+      <% end %>
 
-    <a class="btn btn-gradient" <%= link_to "Edit Order", edit_order_path %></a>
 
+    <% if @order.status %>
+         <!-- Button trigger modal -->
+      <button type="button" class="btn bg-secondary btn-gradient" data-bs-toggle="modal" data-bs-target="#exampleModal"> Edit Order </button>
 
+        <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">   <span> <i class="fa-solid fa-cart-shopping"></i>    1 order will be edited</span> </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+            <div class="modal-body">
+              <%= simple_form_for [@product, @order] do |f| %>
+              <%= f.input :delivery, collection:  Order.deliveries.keys, prompt: "Choose delivery",  as: :radio_buttons, label: 'How do you want to receive the product?', error: 'Please select one option' %>
+              <%= f.input :payment, collection: Order.payments.keys, prompt: "Choose Payment Method", as: :radio_buttons, label: 'What will be the payment method?', error: 'Please select one option'%>
+
+              <%= f.input :status %>
+
+            </div>
+           <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <%= f.submit %>
+               <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
     <% end %>
-
-    <a class="btn btn-flat"  <%= link_to "BACK TO BUY", products_path %>
-    </a>
-
+    <%= link_to "BACK TO BUY", products_path, class:"btn btn-dark" %>
   </div>
-
-
-
 
   <div class="col-4">
-    <div class="card-order">
-      <% if @order.status %>
-      <%= "ORDER OPEN" %>
+    <% if referent_product?(@order.product) %>
+      <% unless @order.status %>
+      <button type='button' class="btn btn-info col-12 mb-3 rounded-pill" disabled> CLOSED ORDER</button>
       <% else %>
-      <%= "ORDER COMPLETED" %>
+        <form action="<%=@order.id%>/mark" method="POST">
+          <input type='hidden' name='_method' value='PATCH'/>
+          <button type='submit' class="btn btn-info col-12 mb-3 rounded-pill">Mark order as dispatched</button>
+        </form>
       <% end %>
+    <% end %>
+
+    <div class="card-order justify-content-center text-center">
+      <div>
+        <h3> Created at</h3>
+        <p><%= @order.created_at.strftime('%A, %d de %B de %Y') %></p>
+      </div>
     </div>
 
-    <div class="card-order">
-      <ul>
-        <h3>Purchase detail</h3>
+    <div class="card-order justify-content-center text-center">
+      <div>
+        <h3> Purchase detail </h3>
         <hr>
-          <li> <%= @order.product.name %> $ <%= @order.product.price %>  </li>
-      </ul>
+        <p> <%= @order.product.name %> $ <%= @order.product.price %> </p>
+      </div>
     </div>
 
-    <div class="card-order">
-      <ul>
-        <h3>Delivery detail</h3>
+    <div class="card-order justify-content-center text-center">
+      <div>
+        <h3> Delivery detail </h3>
         <hr>
-          <li> <%= @order.delivery %>  </li>
-      </ul>
+        <p> <%= @order.delivery %>  </p>
+      </div>
     </div>
 
-  </div>
 </div>
+ <!-- <a class="btn btn-gradient" <%= link_to "Edit Order", edit_order_path %></a> -->

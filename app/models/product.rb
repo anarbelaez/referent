@@ -1,7 +1,10 @@
 class Product < ApplicationRecord
+  include PgSearch::Model
+  multisearchable against: %i[name description user]
+
   belongs_to :user
   has_many :orders
-  has_many_attached :photos
+  has_one_attached :photo
 
   validates :name, :price, :size, :category, :genre, :user, :status, presence: true
   validates :name, length: { minimum: 5 }
@@ -19,6 +22,18 @@ class Product < ApplicationRecord
 
   enum :genre, { women: 0, men: 1, unisex: 2 }
 
-  scope :available, -> { where(status: true) }
+  scope :available, -> { where(status: true).order(created_at: :desc) }
   scope :sold, -> { where(status: false) }
+
+  def brand
+    user.brand
+  end
+
+  def available?
+    status
+  end
+
+  def mark_as_sold!
+    update_attribute(:status, false)
+  end
 end

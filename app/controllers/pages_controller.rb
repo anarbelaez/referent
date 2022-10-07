@@ -1,17 +1,14 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:home]
+  skip_before_action :authenticate_user!, only: %i[home search]
 
   def home
-    @referents = User.referent.last(6)
-    @products = Product.all.last(24)
+    @referents = User.referent
+    @products = Product.available
+  end
 
-    search = params[:root]
-    if search.present?
-      if search[:filter] == "products"
-        @products = Product.where("name LIKE ?", "%#{params[:root][:query]}%")
-      else
-        @referents = User.where(brand: params[:root][:query])
-      end
-    end
+  def search
+    @results = PgSearch.multisearch(params[:query]) if params[:query].present?
+    @referents = User.referent
+    @products = Product.available
   end
 end
