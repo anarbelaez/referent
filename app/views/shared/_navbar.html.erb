@@ -5,10 +5,10 @@
 
     <div class="d-flex justify-content-end align-items-center">
       <% if fashion_lover? %>
-        <%= link_to "Conviertete en Referent", new_referent_path, class: "text-decoration-none text-dark" %>
+        <%= link_to "Conviertete en Referent", new_referent_path, class: "text-decoration-none text-secondary p-1 px-3 rounded-pill border"%>
       <% end %>
 
-      <%= link_to "Search", search_path, class: "text-decoration-none text-dark mx-3 text-uppercase" %>
+      <%= link_to "BUSCAR", search_path, class: "text-decoration-none text-dark mx-3 text-uppercase" %>
 
       <button class="navbar-toggler border-0 p-0 shadow-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
         <span class=""><i class="bi bi-person-circle text-dark fs-3"></i></span>
@@ -21,7 +21,7 @@
       <% if user_signed_in? %>
         <h5 class="offcanvas-title" id="offcanvasNavbarLabel"><%= current_user.name %></h5>
       <% else %>
-        <h5 class="offcanvas-title fs-6" id="offcanvasNavbarLabel">Welcome to Referent</h5>
+        <h5 class="offcanvas-title fs-6" id="offcanvasNavbarLabel">Bienvenido a Referent</h5>
       <% end %>
         <button type="button" class="btn-close shadow-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
@@ -44,21 +44,21 @@
 
             <%= link_to edit_user_registration_path(current_user), class: "nav-link text-decoration-none" do %>
               <i class="bi bi-gear-fill"></i>
-              <span class="mx-2">Settings</span>
+              <span class="mx-2">Ajustes de mi perfil</span>
             <% end %>
 
             <%= link_to destroy_user_session_path, data: {turbo_method: :delete}, class: "nav-link text-decoration-none" do %>
               <i class="bi bi-person-x-fill"></i>
-              <span class="mx-2">Log out</span>
+              <span class="mx-2">Salir de mi cuenta</span>
             <% end %>
           <% else %>
             <%= link_to new_user_session_path, class: "nav-link active text-decoration-none" do %>
               <i class="bi bi-person-fill"></i>
-              <span class="mx-2">Log in</span>
+              <span class="mx-2">Entrar a mi cuenta</span>
             <% end %>
             <%= link_to new_user_registration_path, class: "nav-link text-decoration-none" do %>
               <i class="bi bi-person-heart"></i>
-              <span class="mx-2">Become a Fashion Lover!</span>
+              <span class="mx-2">Registrarme</span>
             <% end %>
           <% end %>
         </ul>
