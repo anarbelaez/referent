@@ -30,11 +30,11 @@
           <% if user_signed_in? %>
             <%= link_to "My profile", user_path(current_user), class: "nav-link active text-decoration-none" %>
 
-            <%= link_to "Settings", edit_user_registration(current_user), class: "nav-link text-decoration-none" %>
 
             <% if current_user.referent? %>
               <%= link_to "New product", new_product_path, class: "nav-link text-decoration-none" %>
             <% end %>
+            <%= link_to "Settings", edit_user_registration_path(current_user), class: "nav-link text-decoration-none" %>
 
             <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "nav-link text-decoration-none" %>
           <% else %>
