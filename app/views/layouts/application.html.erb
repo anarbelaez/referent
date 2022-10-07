@@ -18,6 +18,9 @@
   <body>
   <%= render "shared/navbar" %>
   <%= render "shared/flashes" %>
+  <% if current_page?(home_path) %>
+    <%= render "pages/carousel_home" %>
+  <% end %>
     <div class="container-fluid">
       <%= yield %>
     </div>
