@@ -1,7 +1,13 @@
+<div class="container mx-auto">
 <div class="row mx-auto my-5 card-form col-sm-12 col-lg-10">
   <div class="col-sm-12 col-lg-6 mt-5 d-flex justify-content-center">
   <div class="mx-auto">
-  <h3>Welcome back</h3>
+
+  <h3 class="text-center">Welcome!</h3>
+
+<p class="text-center">¿Don't have an account?</p>
+     <%= link_to "Sing Up", new_user_registration_path, class:"btn btn-danger col-12 text-light" %>
+
   <hr>
    <p><small>Please enter your details</small></p>
   <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: :false }) do |f| %>
@@ -25,9 +31,13 @@
   </div>
   </div>
   <div class="img-form1 col-sm-6 col-lg-6">
+
     <div class="glassmorphism">
 
+
     <h3>Life's too short to wear boring clothes!</h3>
+
     <p>Find in <strong>Referent</strong> unique garments from the best designers</p>
 
+</div>
 </div>

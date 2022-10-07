@@ -1,5 +1,5 @@
  <% if @product.photo.attached? %>
-    <%= cl_image_tag @product.photo.key, height: 300, width: 400, crop: :fill %>
+    <%= cl_image_tag @product.photo.key, height: 300, width: 400, crop: :fill, rounded:4  %>
 <% else %>
   <%= image_tag "https://previews.123rf.com/images/urfandadashov/urfandadashov1805/urfandadashov180500070/100957966-photo-not-available-icon-isolated-on-white-background-vector-illustration.jpg", height: 400, width: 400 %>
 <% end %>
