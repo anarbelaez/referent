@@ -10,4 +10,11 @@ module ApplicationHelper
   def fashion_lover?
     user_signed_in? && current_user.fashion_lover?
   end
+
+  def can_review?(referent)
+    # if current_user.fashion_lover? && current_user.orders.first.closed?
+    #   product.brand == referent.brand
+    # end
+    current_user.orders.any? { |order| order.closed? && order.product.brand == referent.brand }
+  end
 end

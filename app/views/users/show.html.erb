@@ -51,6 +51,24 @@ products = [
   </div>
   </div>
 
+  <div class = "container" class="col-md-6">
+      <% if fashion_lover? && can_review?(@user) %>
+      <%= link_to "New Review", new_user_review_path(@user), class: "btn btn-lg btn-info"%>
+      <% end %>
+      <p class="card-text"> <h5>All Reviews:</h5> <% @user.reviews.each do |review| %>
+      <p class="card-text"><% review.rating.times do %> <i class="fa-solid fa-star"></i><% end %></p>
+      <p class="list-group-item"><%= review.content %></p>
+
+      <% if fashion_lover? && can_review?(@user) %>
+      <small><p><%= link_to "Delete",
+        review_path(review),
+        data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-sm btn-info"
+      %></p></small></p>
+      </p>
+      <% end %>
+    <% end %>
+  </div>
+
 <% elsif @user.fashion_lover? %>
 
 <div class="container">
@@ -78,18 +96,3 @@ products = [
 <% else %>
   <p class="text-center text-danger font-t">Oh oh! You cannot see this user profile!</p>
 <% end %>
-
-
-<div class = "container" class="col-md-6">
-      <%= link_to "New Review", new_user_review_path(@user), class: "btn btn-lg btn-info"%>
-        <p class="card-text"> <h5>All Reviews:</h5> <% @user.reviews.each do |review| %>
-        <p class="card-text"><% review.rating.times do %> <i class="fa-solid fa-star"></i><% end %></p>
-        <p class="list-group-item"><%= review.content %></p>
-        <small><p><%= link_to "Delete",
-          review_path(review),
-          data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-sm btn-info"
-        %></p></small>
-      </p>
-</p>
-  <% end %>
-     </div>

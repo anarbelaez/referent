@@ -25,5 +25,5 @@ Rails.application.routes.draw do
   resources :reviews, only: [:destroy]
 
   # Orders
-  put "orders/:order_id/mark", to: "orders#close_order"
+  patch "orders/:order_id/mark", to: "orders#close_order"
 end

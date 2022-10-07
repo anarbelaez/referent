@@ -17,7 +17,7 @@
 <div class="row">
   <% @products.each do |product| %>
     <div class="col-3">
-      <%= product.name %>
+      <%= render "shared/card_product", product: product %>
     </div>
   <% end %>
 </div>
