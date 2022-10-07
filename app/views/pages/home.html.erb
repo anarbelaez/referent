@@ -29,30 +29,23 @@ products = [
 
 <%# END TEMPORAL %>
 
-<div class="row">
-  <div class="col-12 d-flex justify-content-evenly my-3">
-    <h2 class="col-3 text-center border border-3 border-dark py-1 px-3">Free shipping</h2>
-    <h2 class="col-3 text-center border border-3 border-dark py-1 px-3">Free shipping</h2>
-    <h2 class="col-3 text-center border border-3 border-dark py-1 px-3">Free shipping</h2>
-  </div>
-</div>
 
-<div id="carouselExampleControls" class="carousel carousel-dark slide carousel-fade" data-bs-ride="carousel">
+<div id="carouselExampleControls" class="carousel carousel-dark slide carousel-fade py-5" data-bs-ride="carousel">
   <div class="carousel-inner text-center">
     <div class="carousel-item active">
-      <%= image_tag products.sample, class: "mx-2", width: 400, height: 600 %>
-      <%= image_tag products.sample, class: "mx-2", width: 400, height: 600 %>
-      <%= image_tag products.sample, class: "mx-2", width: 400, height: 600 %>
+      <%= image_tag products.sample, class: "mx-2 col-3", height: 600 %>
+      <%= image_tag products.sample, class: "mx-2 col-3", height: 600 %>
+      <%= image_tag products.sample, class: "mx-2 col-3", height: 600 %>
     </div>
     <div class="carousel-item">
-      <%= image_tag products.sample, class: "mx-2", width: 400, height: 600 %>
-      <%= image_tag products.sample, class: "mx-2", width: 400, height: 600 %>
-      <%= image_tag products.sample, class: "mx-2", width: 400, height: 600 %>
+      <%= image_tag products.sample, class: "mx-2 col-3", height: 600 %>
+      <%= image_tag products.sample, class: "mx-2 col-3", height: 600 %>
+      <%= image_tag products.sample, class: "mx-2 col-3", height: 600 %>
     </div>
     <div class="carousel-item">
-      <%= image_tag products.sample, class: "mx-2", width: 400, height: 600 %>
-      <%= image_tag products.sample, class: "mx-2", width: 400, height: 600 %>
-      <%= image_tag products.sample, class: "mx-2", width: 400, height: 600 %>
+      <%= image_tag products.sample, class: "mx-2 col-3", height: 600 %>
+      <%= image_tag products.sample, class: "mx-2 col-3", height: 600 %>
+      <%= image_tag products.sample, class: "mx-2 col-3", height: 600 %>
     </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -65,64 +58,53 @@ products = [
   </button>
 </div>
 
-<h2 class="text-center mt-5">Latest published products</h2>
-<div class="row mt-2 gy-2 border border-2">
+<h2 class="text-center mb-3 pt-5 font-t">Latest published products</h2>
+<div class="row mt-2 gy-2 bg-page p-4">
   <% @products.last(6).each do |product| %>
-    <div class="col-6 col-md-2 my-4">
-      <div class="card border-0 rounded-0"
-      style="height: 270px;
-      background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(<%= products.sample %>)">
-      </div>
-    <%= link_to product.name, product_path(product), class: "link-dark text-decoration-none" %>
-    <div class="d-flex justify-content-between align-items-center">
-      <p class="m-0">$<%= product.price %></p>
-    <%= link_to "I want it!", new_product_order_path(product), class: "btn btn-info p-0 px-1" %>
-    </div>
-    </div>
+  <div class="col-6 col-md-2 my-4">
+    <%= render 'shared/card_product', product: product %>
+  </div>
   <% end %>
+</div>
+
+
+<div class="row mt-5">
+  <div class="col-3 px-2">
+    <%= image_tag products.sample, class: "col-12", height: 600 %>
+    <p class="font-t text-center border border-2 border-dark mt-3">Spring</p>
   </div>
 
-<div id="carouselExampleControls2" class="carousel carousel-dark slide carousel-fade" data-bs-ride="carousel">
-  <div class="carousel-inner text-center mt-4">
-    <div class="carousel-item active">
-      <%= image_tag products.sample, class: "mx-2 col-4", height: 450 %>
-      <%= image_tag products.sample, class: "mx-2 col-4", height: 450 %>
-      <%= image_tag products.sample, class: "mx-2 col-4", height: 450 %>
-    </div>
-    <div class="carousel-item">
-      <%= image_tag products.sample, class: "mx-2 col-4", height: 450 %>
-      <%= image_tag products.sample, class: "mx-2 col-4", height: 450 %>
-      <%= image_tag products.sample, class: "mx-2 col-4", height: 450 %>
-    </div>
-    <div class="carousel-item">
-      <%= image_tag products.sample, class: "mx-2 col-4", height: 450 %>
-      <%= image_tag products.sample, class: "mx-2 col-4", height: 450 %>
-      <%= image_tag products.sample, class: "mx-2 col-4", height: 450 %>
-    </div>
+  <div class="col-3 px-2">
+    <%= image_tag products.sample, class: "col-12", height: 600 %>
+    <p class="font-t text-center border border-2 border-dark mt-3">Summer</p>
   </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls2" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls2" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
+
+  <div class="col-3 px-2">
+    <%= image_tag products.sample, class: "col-12", height: 600 %>
+    <p class="font-t text-center border border-2 border-dark mt-3">Fall</p>
+  </div>
+
+  <div class="col-3 px-2">
+    <%= image_tag products.sample, class: "col-12", height: 600 %>
+    <p class="font-t text-center border border-2 border-dark mt-3">Winter</p>
+  </div>
 </div>
 
 
 
+
+
   <div class="col-12 mt-2 d-flex justify-content-center">
-    <%= link_to "Explore all products 🔍", products_path, class: "text-center text-decoration-none text-dark border-bottom fs-5" %>
+    <p class="font-p"><%= link_to "Explore all products 🔍", products_path %></p>
   </div>
 
 
 
-<h2 class="text-center my-5">About Referent</h2>
-
+<h2 class="text-center mt-5 mb-3 font-t">About Referent</h2>
+<div class="bg-page py-5">
 <div class="container">
-  <div class="row">
-    <div class="col-6 text-center my-auto">
+  <div class="row bg-color-beige py-5 rounded-4">
+    <div class="col-6 text-center my-auto font-p">
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
       Sapiente suscipit exercitationem minima facilis quia voluptatum aspernatur,
       debitis similique eius expedita vel quibusdam error et esse quo obcaecati molestias ea ratione.</p>
@@ -133,10 +115,12 @@ products = [
     </div>
   </div>
 </div>
+</div>
 
+<div class="container">
 
-<div class="mt-5 border-bottom text-center pb-3">
-  <%= link_to "Referents", referents_path, class: "text-decoration-none fs-4 text-dark d-inline" %>
+<div class="mt-5 text-center pb-3">
+  <h2 class="font-t"><%= link_to "Referents", referents_path %></h2>
 </div>
 <div class="row mt-2 g-1">
   <% num = 0 %>
@@ -144,7 +128,7 @@ products = [
     <div class="col-4 col-md-2">
 
     <div class="card border-0 rounded-0"
-     style="height: 150px;
+     style="height: 200px;
      background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(<%= brands[num] %>)">
      <% num += 1 %>
 
@@ -160,7 +144,7 @@ products = [
     <div class="col-4 col-md-2">
 
     <div class="card border-0 rounded-0"
-     style="height: 150px;
+     style="height: 200px;
      background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(<%= brands[num] %>)">
      <% num += 1 %>
 
@@ -171,14 +155,15 @@ products = [
 
 
   <% end %>
+</div>
 
   <div class="col-12 mt-5 d-flex justify-content-center">
-    <%= link_to "See more Referents 🔍", referents_path, class: "text-center text-decoration-none text-dark border-bottom fs-5" %>
+   <p class="font-p"><%= link_to "See more Referents 🔍", referents_path %></p>
   </div>
 </div>
 
 
-<div class="row my-5">
+<div class="row mt-4 py-5 bg-page ">
   <div class="col-12">
     <p class="fw-bold text-center pt-3"> Made with 🧡 by Katapi </p>
   </div>

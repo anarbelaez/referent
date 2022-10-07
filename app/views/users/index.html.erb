@@ -1,8 +1,9 @@
-<ol>
+
+<div class="container">
+<div class="row mt-2 gy-2">
 <% @referents.each do |user| %>
-  <li>
-    <span class="fw-bold"><%= user.brand %></span>:
-    <%= user.description %>
-  </li>
+    <%= render 'shared/row_referent', user: user %>
 <% end %>
-</ol>
+</div>
+
+</div>

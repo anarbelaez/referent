@@ -7,8 +7,9 @@
   "https://images.unsplash.com/photo-1630750793287-fd38912df4d1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=548&q=80",
   "https://images.unsplash.com/photo-1552985247-03b1fddb53d1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=622&q=80"
 ]
+%>
 
-products = [
+<% products = [
   "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80",
   "https://images.unsplash.com/photo-1594631770635-f2915410b410?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80",
   "https://images.unsplash.com/photo-1617178388553-a9d022974a5c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80",
@@ -19,61 +20,22 @@ products = [
   "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=772&q=80",
   "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
 ]
+
+
 %>
 
-<% if @user.referent? %>
-  <div class="container">
-    <div class="row mb-5">
-      <div class="col-12">
-        <h1 class="pt-5 font-t"><%= @user.brand %></h1>
-      </div>
-      <div class="col-6 mt-3">
-        <%= image_tag brands.sample%>
-      </div>
-      <div class="col-6 my-auto text-start">
-        <h2 class="border-bottom mb-3 font-t">About <%= @user.brand %>: </h2>
-        <p class="font-p"><%= @user.description %></p>
+
+
+<div class="col-6 col-md-4 my-4">
+  <div class="card-brand shadow-sm">
+    <%= image_tag products.sample, class: "card-img-top", height: 270 %>
+    <div class="">
+    <p><%= link_to order.product.name, order_path(order), class: "link-dark text-decoration-none" %></p>
+      <div class="d-flex justify-content-between align-items-center py-2 px-1">
+        <p class="m-0">Status: <%= "Open" if order.status %></p>
+        <p class="m-0">Payment: <%= order.payment %></p>
+        <%= link_to "View order", order_path(order), class: "btn btn-info p-0 px-1" %>
       </div>
     </div>
   </div>
-
-  <h2 class="text-center mb-3 font-t">Products of the Referent</h2>
-  <div class="bg-page my-5 py-3">
-    <div class="container">
-      <div class="row mt-2 gy-2">
-      <% @user.products.each do |product| %>
-        <div class="col-6 col-md-3 my-4">
-          <%= render 'shared/card_product', product: product %>
-        </div>
-      <% end %>
-    </div>
-  </div>
-  </div>
-
-<% elsif @user == current_user %>
-
-<div class="container">
-    <div class="row mb-5">
-      <div class="col-12">
-        <h1 class="border-bottom"><%= current_user.first_name %> <%= current_user.last_name %></h1>
-      </div>
-      <div class="col-6 mt-3">
-        <%= image_tag brands.sample%>
-      </div>
-      <div class="col-6 my-auto text-start">
-        <h2 class="border-bottom mb-3">Your email: </h2>
-        <p><%= current_user.email %></p>
-      </div>
-    </div>
-    <h2 class="text-center mb-3">My orders</h2>
-  <div class="row mt-2 gy-2">
-  <% @user.orders.each do |order| %>
-    <%= render 'shared/card_order', order: order %>
-  <% end %>
-  </div>
-
-  </div>
-
-<% else %>
-  <p>Oh oh!</p>
-<% end %>
+</div>
