@@ -1,49 +1,61 @@
-<div class="container">
+ <style>
+   .pr{
+   font-size: 0.7em;
+   letter-spacing: 1.2px;
+   color: $color-secondary;
+ }
 
-<div class="row mx-auto my-5">
-  <div class="col-12 d-flex">
-<div class="card-category">
-<% if @product.photo.attached? %>
-  <%= cl_image_tag @product.photo.key, height: 300, width: 400, crop: :fill %>
-<% else %>
-<h1>articulo sin foto</h1>
-<%= image_tag "https://previews.123rf.com/images/urfandadashov/urfandadashov1805/urfandadashov180500070/100957966-photo-not-available-icon-isolated-on-white-background-vector-illustration.jpg", height: 400, width: 400 %>
-<% end %>
+ </style>
+ <div class="container d-flex">
+    <section class="product">
+     <div class="product__photo">
+       <div class="photo-container">
+         <div class="photo-main">
+           <div class="controls">
+             <i class="fa-solid fa-share-nodes"></i>
+             <%= link_to user_path do %>
+        <i class="fa-solid fa-star"></i>
+      <% end %>
 
-</div>
+           </div>
 
-    <div class="info ms-5">
-      <div class="row">
-        <div class="col-12">
-          <h1 class="border-bottom"><%= @product.name %></h1>
-          <p class="brand"> <%= @product.brand %> </p>
-          <p class="border-bottom"> <%= @product.description %> </p>
-        </div>
-      </div>
+          <% if @product.photo.attached? %>
+          <%= cl_image_tag @product.photo.key, class:"rounded-start" %>
+          <% else %>
+          <h1>articulo sin foto</h1>
+          <%= image_tag "https://previews.123rf.com/images/urfandadashov/urfandadashov1805/urfandadashov180500070/100957966-photo-not-available-icon-isolated-on-white-background-vector-illustration.jpg" %>
+          <% end %>
 
-      <div class="row">
-        <div class="col-6">
-          <p>Size: <%= @product.size %> </p>
+         </div>
+         <!-- <div class="photo-album">
+
+         </div> -->
+       </div>
+     </div>
+     <div class="product__info">
+       <div class="title">
+         <h1><%= @product.name.upcase %></h1>
+         <span class="text-success"> <%= @product.brand.upcase%> <i class="fa-solid fa-star"></i> </span>
+       </div>
+       <div class="price">
+         $ <span><%= @product.price %></span>
+       </div>
+       <div >
+         <h3 class="pr">SIZE</h3>
+         <ul>
+           <%= @product.size.capitalize %>
+         </ul>
+       </div>
+       <div class="description">
+         <h3 class="pr">BENEFITS</h3>
+         <ul>
           <p>Color: <%= @product.color %> </p>
           <p>Category: <%= @product.category %> </p>
           <p>Genre: <%= @product.genre %> </p>
-        </div>
+         </ul>
+       </div>
 
-        <div class="col-6">
-          <p>Price: <%= @product.price %> </p>
-
-          <% unless referent_user? %>
-            <%= link_to "I want it!", new_product_order_path(@product), class: "btn btn-info col-12" %>
-          <% else %>
-            <p class="text-danger">You need to log in with a Customer account!</p>
-          <% end %>
-
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-5 my-4">
-    <%= link_to "Home", home_path, class: "btn btn-info" %>
+       <%= link_to "Home", home_path, class: "btn btn-success" %>
     <!-- Button trigger modal -->
     <% if referent_product?(@product) %>
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#productModal">
@@ -55,5 +67,11 @@
     <!-- Modal -->
     <%= render 'products/modal_product' %>
 
-  </div>
-  </div>
+      <% unless referent_user? %>
+       <%= link_to "Lo quiero!", new_product_order_path(@product), class: "btn btn-info col-6" %>
+      <% else %>
+        <p class="text-danger">You need to log in with a Customer account!</p>
+      <% end %>
+     </div>
+   </section>
+   </div>
