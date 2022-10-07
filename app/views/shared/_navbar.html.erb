@@ -1,44 +1,68 @@
-<nav class="navbar navbar-expand-lg py-0 bg-light sticky-top">
-  <div class="container px-0">
+<nav class="navbar bg-light sticky-top mb-3">
+  <div class="container">
     <%= link_to "Referent", home_path, class: "navbar-brand fw-bold" %>
 
-    <div class="d-flex align-items-center">
-      <%= link_to search_path do %>
-        <i class="bi bi-search mx-3 fs-5"></i>
-      <% end %>
 
+    <div class="d-flex justify-content-end align-items-center">
       <% if fashion_lover? %>
-        <%= link_to "Become a Referent", new_referent_path %>
+        <%= link_to "Become a Referent", new_referent_path, class: "text-decoration-none text-dark p-1 px-3 rounded-pill border" %>
       <% end %>
 
-      <div>
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item dropdown">
-            <%= image_tag "https://st3.depositphotos.com/6672868/13701/v/600/depositphotos_137014128-stock-illustration-user-profile-icon.jpg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+      <%= link_to "Search", search_path, class: "text-decoration-none text-dark mx-3 text-uppercase" %>
 
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-
-              <% if user_signed_in? %>
-                <%= link_to "My profile", user_path(current_user), class: "dropdown-item" %>
+      <button class="navbar-toggler border-0 p-0 shadow-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+        <span class=""><i class="bi bi-person-circle text-dark fs-3"></i></span>
+      </button>
+    </div>
 
 
-                <% if current_user.referent? %>
-                  <%= link_to "New product", new_product_path, class: "dropdown-item" %>
-                <% end %>
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+      <div class="offcanvas-header py-3 px-3">
+      <% if user_signed_in? %>
+        <h5 class="offcanvas-title" id="offcanvasNavbarLabel"><%= current_user.name %></h5>
+      <% else %>
+        <h5 class="offcanvas-title fs-6" id="offcanvasNavbarLabel">Welcome to Referent</h5>
+      <% end %>
+        <button type="button" class="btn-close shadow-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body py-1 px-3">
+        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+          <% if user_signed_in? %>
 
-                <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
-              <% else %>
-                <%= link_to "Log in", new_user_session_path, class: "dropdown-item" %>
-                <%= link_to "Sign up", new_user_registration_path, class: "dropdown-item" %>
-                <%= link_to "Another action", "#", class: "dropdown-item" %>
-              </div>
+            <%= link_to user_path(current_user), class: "nav-link active text-decoration-none" do %>
+              <i class="bi bi-person-fill"></i>
+              <span class="mx-2">My profile</span>
+            <% end %>
+
+
+            <% if current_user.referent? %>
+              <%= link_to new_product_path, class: "nav-link text-decoration-none" do %>
+                <i class="bi bi-bag-heart"></i>
+                <span class="mx-2">New product</span>
               <% end %>
+            <% end %>
 
-            </div>
-          </li>
+            <%= link_to edit_user_registration_path(current_user), class: "nav-link text-decoration-none" do %>
+              <i class="bi bi-gear-fill"></i>
+              <span class="mx-2">Settings</span>
+            <% end %>
+
+            <%= link_to destroy_user_session_path, data: {turbo_method: :delete}, class: "nav-link text-decoration-none" do %>
+              <i class="bi bi-person-x-fill"></i>
+              <span class="mx-2">Log out</span>
+            <% end %>
+          <% else %>
+            <%= link_to new_user_session_path, class: "nav-link active text-decoration-none" do %>
+              <i class="bi bi-person-fill"></i>
+              <span class="mx-2">Log in</span>
+            <% end %>
+            <%= link_to new_user_registration_path, class: "nav-link text-decoration-none" do %>
+              <i class="bi bi-person-heart"></i>
+              <span class="mx-2">Become a Fashion Lover!</span>
+            <% end %>
+          <% end %>
         </ul>
       </div>
-
     </div>
   </div>
 </nav>
