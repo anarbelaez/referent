@@ -7,8 +7,11 @@ class PagesController < ApplicationController
   end
 
   def search
-    @results = PgSearch.multisearch(params[:query]) if params[:query].present?
-    @referents = User.referent
-    @products = Product.available
+    if params[:query].present?
+      @query = params[:query]
+      @products = Product.search(params[:query]).available
+    else
+      @products = Product.available
+    end
   end
 end

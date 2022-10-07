@@ -1,35 +1,23 @@
-<%= form_with url: search_path, method: :get, class: "d-flex" do %>
-  <%= text_field_tag :query,
-    params[:query],
-    class: "form-control",
-    placeholder: "Search for products, brands..."
-  %>
-  <%= submit_tag "Search", class: "btn btn-primary" %>
-<% end %>
+<div class="row g-0">
+  <%= render "search_form" %>
+</div>
 
-<% unless @results.nil? %>
-  <div class="row">
-    <h2 class="bg-info">Results</h2>
-    <% @results.each do |result| %>
-      <%= result.searchable.name %>
-    <% end %>
+<div class="row">
+  <div class="col-12 my-3">
+    <p class="text-center text-secondary">
+      <% if @query %>
+        <%= @products.count %> results for "<%= @query %>"
+      <% else %>
+        All products
+      <% end %>
+    </p>
   </div>
-<% end %>
+</div>
 
-<% if @products %>
 <div class="row">
-  <h2 class="bg-info">Products</h2>
   <% @products.each do |product| %>
-    <%= product.name %>
+    <div class="col-3">
+      <%= product.name %>
+    </div>
   <% end %>
 </div>
-<% end %>
-
-<% if @referents %>
-<div class="row">
-  <h2 class="bg-info">Referents</h2>
-  <% @referents.each do |referent| %>
-    <%= referent.brand %>
-  <% end %>
-</div>
-<% end %>

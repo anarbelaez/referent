@@ -1,10 +1,14 @@
 class Product < ApplicationRecord
   include PgSearch::Model
-  multisearchable against: %i[name description user]
 
   belongs_to :user
   has_many :orders
   has_one_attached :photo
+
+  pg_search_scope :search,
+                  against: %i[name description],
+                  associated_against: { user: [:brand] },
+                  using: { tsearch: { prefix: true } }
 
   validates :name, :price, :size, :category, :genre, :user, :status, presence: true
   validates :name, length: { minimum: 5 }

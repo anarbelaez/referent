@@ -1,0 +1,26 @@
+<div class="col-12 d-flex">
+  <%# Search icon %>
+  <div class="d-flex align-items-center justify-content-end">
+    <i class="bi bi-search text-dark fs-5 p-2 border-bottom border-dark border-1"></i>
+  </div>
+  <%# End search icon %>
+
+  <%# Formulario %>
+  <div class="col-11">
+    <%= form_with url: search_path, method: :get, class: "form-row", autocomplete: "off" do %>
+      <%= text_field_tag :query,
+        params[:query],
+        class: "shadow-none text-dark fs-5 p-2 px-3 form-control border-0 rounded-0 border-bottom border-dark border-1 w-100",
+        placeholder: "SEARCH..."
+      %>
+      <%= submit_tag "Search", class: "btn d-none" %>
+    <% end %>
+  </div>
+  <%# End formulario %>
+</div>
+
+<%# Small script for clean form %>
+<script>
+  document.getElementById("query").value = "";
+</script>
+<%# End script %>
