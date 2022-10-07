@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-lg py-0 bg-light sticky-top">
+  <div class="container px-0">
+    <%= link_to "Referent", home_path, class: "navbar-brand fw-bold" %>
+
+    <div class="d-flex align-items-center">
+      <%= link_to search_path do %>
+        <i class="bi bi-search mx-3 fs-5"></i>
+      <% end %>
+
+      <% if fashion_lover? %>
+        <%= link_to "Become a Referent", new_referent_path %>
+      <% end %>
+
+      <div>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item dropdown">
+            <%= image_tag "https://st3.depositphotos.com/6672868/13701/v/600/depositphotos_137014128-stock-illustration-user-profile-icon.jpg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+
+            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+
+              <% if user_signed_in? %>
+                <%= link_to "My profile", user_path(current_user), class: "dropdown-item" %>
+
+
+                <% if current_user.referent? %>
+                  <%= link_to "New product", new_product_path, class: "dropdown-item" %>
+                <% end %>
+
+                <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+              <% else %>
+                <%= link_to "Log in", new_user_session_path, class: "dropdown-item" %>
+                <%= link_to "Sign up", new_user_registration_path, class: "dropdown-item" %>
+                <%= link_to "Another action", "#", class: "dropdown-item" %>
+              </div>
+              <% end %>
+
+            </div>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</nav>
