@@ -24,7 +24,7 @@ products = [
         <div class="d-flex justify-content-between align-items-center py-2 px-1">
         <p class="m-0 ms-1 font-pb">$<%= product.price %></p>
         <% unless current_user.referent? %>
-        <%= link_to "I want it!", new_product_order_path(product), class: "bottom-orange font-pb" %>
+          <%= link_to "I want it!", new_product_order_path(product), class: "bottom-orange font-pb" %>
         <% end %>
         <p> <%= product.brand %> </p>
       </div>
