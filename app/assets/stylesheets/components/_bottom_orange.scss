@@ -1,0 +1,12 @@
+.bottom-orange{
+  text-decoration: none;
+  color: #000;
+  background-color: $orange;
+  margin: 5px;
+  padding: 5px 8px;
+  border-radius: 2px;
+  &:hover{
+    color: #000;
+    background: #eba52c;
+  }
+}

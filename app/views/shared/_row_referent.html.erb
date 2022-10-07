@@ -1,0 +1,23 @@
+<% brands = [
+  "https://images.unsplash.com/photo-1510897345173-4d938815feb4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80",
+  "https://images.unsplash.com/photo-1633409361618-c73427e4e206?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80",
+  "https://images.unsplash.com/photo-1525268771113-32d9e9021a97?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80",
+  "https://images.unsplash.com/photo-1528840942-6d0562674ad6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80",
+  "https://images.unsplash.com/photo-1522125123931-9304d91a42ee?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=582&q=80",
+  "https://images.unsplash.com/photo-1630750793287-fd38912df4d1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=548&q=80",
+  "https://images.unsplash.com/photo-1552985247-03b1fddb53d1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=622&q=80"
+]
+%>
+
+
+<div class="col-6 col-md-4">
+  <div class="card-brand shadow-sm bg-color-beige">
+    <%= image_tag brands.sample, class: "card-img-top", height: 270 %>
+    <div class="border">
+      <div class="d-flex justify-content-between align-items-center py-2 px-1">
+        <p class="my-0 font-t"><%= user.brand %></p>
+        <%= link_to "See more...", user_path(user), class: "bottom-orange font-pb" %>
+      </div>
+    </div>
+  </div>
+</div>
