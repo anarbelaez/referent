@@ -1,0 +1,62 @@
+<%# TEMPORAL %>
+<% images = [
+  "https://images.unsplash.com/photo-1575939238474-c8ada13b2724?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=871&q=80",
+  "https://images.unsplash.com/photo-1469334031218-e382a71b716b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+  "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
+  "https://images.unsplash.com/photo-1543331707-30e9129663e0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=388&q=80",
+  "https://images.unsplash.com/photo-1588731247530-4076fc99173e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80",
+  "https://images.unsplash.com/photo-1505801066737-f25b349904b5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=873&q=80",
+  "https://images.unsplash.com/photo-1508853363419-a9263d752c59?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
+  "https://images.unsplash.com/photo-1468818461933-b1d79f62434e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=871&q=80"
+  ]
+
+%>
+<%# END TEMPORAL %>
+
+
+<div id="carouselExampleControls" class="carousel slide carousel-fade" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <div class="row g-0">
+        <div class="col-12" style="background-size: cover; background-position: center; background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)), url(<%= images[0] %>); height: 500px">
+        <div class="carousel-caption text-center">
+          <h5 class="fs-1">Productos únicos</h5>
+          <p class="fs-3">En <strong>Referent</strong> puedes encontrar productos de marcas locales</p>
+        </div>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <div class="row g-0">
+        <div class="col-4" style="background-size: cover; background-position: center; background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)), url(<%= images[3] %>); height: 500px">
+        </div>
+        <div class="col-4" style="background-size: cover; background-position: center; background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)), url(<%= images[4] %>); height: 500px">
+          <div class="carousel-caption text-center">
+            <h2 class="fs-1">Encuentra tu referente de estilo</h2>
+            <p class="fs-3">Y crea tu <strong> estilo propio!</strong></p>
+          </div>
+        </div>
+        <div class="col-4" style="background-size: cover; background-position: center; background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)), url(<%= images[2] %>); height: 500px">
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <div class="row g-0">
+        <div class="col-12" style="background-size: cover; background-position: center; background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)), url(<%= images[7] %>); height: 500px">
+          <div class="carousel-caption text-center">
+            <h2 class="fs-1">¿Eres Diseñador?</h2>
+            <p class="fs-3">¡Que esperas para convertirte en <strong> Referent</strong>!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>

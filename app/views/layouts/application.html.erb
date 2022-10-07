@@ -16,12 +16,13 @@
   </head>
 
   <body>
-  <%= render "shared/navbar2" %>
+  <%= render "shared/navbar" %>
   <%= render "shared/flashes" %>
-    <div class="">
+  <% if current_page?(home_path) %>
+    <%= render "pages/carousel_home" %>
+  <% end %>
+    <div class="container-fluid">
       <%= yield %>
     </div>
-
-    <script src="sweetalert2.all.min.js"></script>
   </body>
 </html>

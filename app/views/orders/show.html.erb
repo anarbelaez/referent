@@ -1,3 +1,4 @@
+<div class="container d-flex">
 <div class="row">
   <div class="col sm-12 col-8">
     <div class="card-order">
@@ -25,7 +26,7 @@
 
   <div class="card-product-o">
     <% if @order.product.photo.present? %>
-      <%= cl_image_tag @order.product.photo.key, height: 300, width: 400, crop: :fill %>
+      <%= cl_image_tag @order.product.photo.key %>
     <% else %>
     <%= image_tag "https://previews.123rf.com/images/urfandadashov/urfandadashov1805/urfandadashov180500070/100957966-photo-not-available-icon-isolated-on-white-background-vector-illustration.jpg", height: 400, width: 400 %>
     <% end %>
@@ -84,3 +85,4 @@
 
 </div>
  <!-- <a class="btn btn-gradient" <%= link_to "Edit Order", edit_order_path %></a> -->
+</div>

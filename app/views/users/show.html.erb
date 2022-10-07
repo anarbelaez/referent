@@ -27,18 +27,18 @@ products = [
       <div class="col-12">
         <h1 class="pt-5 font-t"><%= @user.brand %></h1>
       </div>
-      <div class="col-6 mt-3">
-        <%= image_tag brands.sample%>
+      <div class="col-md-12 col-lg-6 mt-3">
+        <%= image_tag brands.sample, class: "col-12"%>
         <%# <%= cl_image_tag @user.photo.key, height: 300, width: 400, crop: :fill %>
       </div>
-      <div class="col-6 my-auto text-start">
-        <h2 class="border-bottom mb-3 font-t">About <%= @user.brand %>: </h2>
+      <div class="col-md-12 col-lg-6 my-auto text-start">
+        <h2 class="border-bottom mb-3 font-t">Sobre: <%= @user.brand %> </h2>
         <p class="font-p"><%= @user.description %></p>
       </div>
     </div>
   </div>
 
-  <h2 class="text-center mb-3 font-t">All my products</h2>
+  <h2 class="text-center mb-3 font-t">Todos sus productos</h2>
   <div class="bg-page my-5 py-3">
     <div class="container">
       <div class="row mt-2 gy-2">
@@ -53,16 +53,19 @@ products = [
 
   <div class = "container" class="col-md-6">
       <% if fashion_lover? && can_review?(@user) %>
-      <%= link_to "New Review", new_user_review_path(@user), class: "btn btn-lg btn-info"%>
+        <div class="border border-dark p-3">
+          <%= render 'shared/form_review', user: @user, review: @review %>
+        </div>
       <% end %>
-      <p class="card-text"> <h5>All Reviews:</h5> <% @user.reviews.each do |review| %>
+      <p class="card-text"> <h2 class="mt-5">Sus compradores dicen:</h2> <% @user.reviews.each do |review| %>
       <p class="card-text"><% review.rating.times do %> <i class="fa-solid fa-star"></i><% end %></p>
       <p class="list-group-item"><%= review.content %></p>
 
       <% if fashion_lover? && can_review?(@user) %>
-      <small><p><%= link_to "Delete",
+
+      <small><p><%= link_to "Eliminar",
         review_path(review),
-        data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-sm btn-info"
+        data: {turbo_method: :delete, turbo_confirm: "Estas seguro?"}, class: "btn btn-sm btn-info"
       %></p></small></p>
       </p>
       <% end %>
@@ -76,15 +79,15 @@ products = [
       <div class="col-12">
         <h1 class="border-bottom"><%= current_user.first_name %> <%= current_user.last_name %></h1>
       </div>
-      <div class="col-6 mt-3">
-        <%= image_tag brands.sample%>
+      <div class="col-md-12 col-lg-6 mt-3">
+        <%= image_tag brands.sample, class: "col-12"%>
       </div>
-      <div class="col-6 my-auto text-start">
-        <h2 class="border-bottom mb-3">Your email: </h2>
+      <div class="col-md-12 col-lg-6 my-auto text-start">
+        <h2 class="border-bottom mb-3">Tu email: </h2>
         <p><%= current_user.email %></p>
       </div>
     </div>
-    <h2 class="text-center mb-3">My orders</h2>
+    <h2 class="text-center mb-3">Mis ordenes</h2>
   <div class="row mt-2 gy-2">
   <% @user.orders.each do |order| %>
     <%= render 'shared/card_order', order: order %>
@@ -94,7 +97,7 @@ products = [
   </div>
 
 <% else %>
-  <p class="text-center text-danger font-t">Oh oh! You cannot see this user profile!</p>
+  <p class="text-center text-danger font-t">Oh oh! No puedes acceder a este perfil!</p>
 <% end %>
 <<<<<<< HEAD
 
