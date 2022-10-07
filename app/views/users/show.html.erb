@@ -38,7 +38,7 @@ products = [
     </div>
   </div>
 
-  <h2 class="text-center mb-3 font-t">Products of the Referent</h2>
+  <h2 class="text-center mb-3 font-t">All my products</h2>
   <div class="bg-page my-5 py-3">
     <div class="container">
       <div class="row mt-2 gy-2">
@@ -51,7 +51,7 @@ products = [
   </div>
   </div>
 
-<% elsif @user == current_user %>
+<% elsif @user.fashion_lover? %>
 
 <div class="container">
     <div class="row mb-5">
@@ -76,7 +76,7 @@ products = [
   </div>
 
 <% else %>
-  <p>Oh oh!</p>
+  <p class="text-center text-danger font-t">Oh oh! You cannot see this user profile!</p>
 <% end %>
 
 

@@ -8,7 +8,7 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    redirect_to home_path unless current_user == @order.user
+    redirect_to home_path unless current_user == @order.product.user || current_user == @order.user
   end
 
   def create

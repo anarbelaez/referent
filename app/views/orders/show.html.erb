@@ -18,7 +18,7 @@
 
     <div class="card-order">
       <p> <%= image_tag "https://st3.depositphotos.com/6672868/13701/v/600/depositphotos_137014128-stock-illustration-user-profile-icon.jpg", class: "avatar dropdown-toggle", id: "navbarDropdown", 'aria-haspopup': true, 'aria-expanded': false %>
-      Your Referent:  <strong><%= @order.user.brand %></strong></p>
+      Your Referent:  <strong><%= @order.product.brand %></strong></p>
     </div>
 
   <hr>
@@ -75,7 +75,12 @@
       </div>
     </div>
     <% end %>
-    <%= link_to "BACK TO BUY", products_path, class:"btn btn-dark" %>
+
+    <% if referent_user? %>
+      <%= link_to "Back", :back, class:"btn btn-dark" %>
+    <% else %>
+      <%= link_to "Back to buy", products_path, class:"btn btn-dark" %>
+    <% end %>
   </div>
 
   <div class="col-4">

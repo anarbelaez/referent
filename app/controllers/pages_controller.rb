@@ -4,6 +4,7 @@ class PagesController < ApplicationController
   def home
     @referents = User.referent
     @products = Product.available
+    # redirect_to user_path(current_user) if user_signed_in? && current_user.referent?
   end
 
   def search
