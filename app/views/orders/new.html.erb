@@ -1,11 +1,12 @@
- <div class="card-order mx-auto mb-3 col-10 ">
-    <span> <i class="fa-solid fa-cart-shopping"></i>    1 order will be created</span>
-  </div>
+ <div class="container mx-auto my-3 bg-primary">
 
-<div class="row">
- <div class="card-order mx-auto col-10">
+<div class="row col-12 p-5 rounded-4">
+  <div class="col-6 mx-auto">
+
 
    <%= render 'orders/image_product' %>
+   </div>
+   <div class="col-6 mx-auto p-5">
 
     <%= simple_form_for [@product, @order] do |f| %>
       <%= f.input :delivery, collection:  Order.deliveries.keys, prompt: "Choose delivery",  as: :radio_buttons, label: 'How do you want to receive the product?', error: 'Please select one option' %>
@@ -40,5 +41,6 @@
     </div>
   </div>
   <% end %>
+</div>
 </div>
 </div>
